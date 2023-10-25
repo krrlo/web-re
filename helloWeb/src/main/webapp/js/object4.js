@@ -14,7 +14,7 @@ const obj = {   //객체생성
 }
 
 
-obj.addFriend =function (friend){
+obj.addFriend =function (friend){  //친구 추가 메서드 
 	this.friends.push(friend);  //this는 객체를 가르킴 . 
 }
 

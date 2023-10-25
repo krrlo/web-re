@@ -1,5 +1,7 @@
 // object3.js
 
+console.log('외안되냐고!!!!!!!!!!!!')
+
 const member = {
 	name: "홍길동",
 	age: 20,
@@ -7,17 +9,19 @@ const member = {
 	showInfo: function() {
 		return `이름은 ${this.name}, 나이는 ${this.age}세 입니다.`;
 	},
-	html: '',
-	makeTr: function(student = { sno, sname, engScore, mathScore }) {
+	//html: '',
+	
+	makeTr: function(student = {sno, sname, engScore, mathScore}) {
 		let tr = '';
 		tr += '<tr>';
-		for(let prop in student){
+		for(let prop in student){   //student 객체의 속성 값들이 출력됨 
 				tr += '<td>' + student[prop] + '</td>';
 		}
 		tr += '<td><button onclick="this.parentElement.parentElement.remove()">삭제</button></td>';
 		tr += '</tr>';
 		return tr;
 	},
+	
 	makeHtml(studAry) {
 		// html생성. => this.makeTr(std);
 		let table = '<table border="1"><tbody>';
@@ -28,28 +32,27 @@ const member = {
 		table += '</tbody></table>';
 		this.html = table;
 	},
+	
 	showPage(dom) {
 		dom.innerHTML = this.html;
 	}
-}
+	
+}////객체 
 
 //for of 배열
 
 //객체의 속성을 보고싶으면 for ..in 
 for (let prop in member){
+	console.log(member[prop])  //값이 나옴 
+	
+	
 	//속성의 값을 보고싶으면   member.name / member['age']
 	//console.log(typeof member[prop]);  //>name..age..나옴 
 	
-	if (typeof member[prop] != 'function'){
-		console.log(member[prop]);
-	}
+	//if (typeof member[prop] != 'function'){
+	//	console.log(member[prop]);
+	//}
 	
-}
-
-
-
-
-
 
 
 
@@ -62,3 +65,4 @@ const students = [
 member.makeHtml(students);
 member.showPage(document.getElementById('show'));
 
+}

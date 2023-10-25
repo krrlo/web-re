@@ -1,4 +1,4 @@
-//cal.js
+  //cal.js
 
 
 
@@ -47,15 +47,15 @@ function makebody() {
 	body += '<tbody>';
 	body += '<tr>';
 	for (let i = 1; i <= 31; i++) {
-		body += '<td>' + i + '</td>'
-		if(i % 7){
-			body += '<br>'
+		body += '<td>' + i + '</td>';
+		if (i % 7 == 0) {
+			body += '</tr><tr>';
 		}
 	}
 	body += '</tr>';
 	body += '</tbody>';
-	
-	console.log("dfdfd" ,body)
+
+	console.log(body)
 	document.getElementById('show').innerHTML += body;
 
 }

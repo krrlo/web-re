@@ -9,7 +9,7 @@ Member.prototype.getBloodType = function(){
 	return this.bloodType;
 }
 
-
+//클래스로 객체 생성 
 const mem2 = new Member('홍길동',22,123.4);
 mem2.setBloodType('ab');
 console.log(mem2.getBloodType());
