@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js/for2.html</title>
+</head>
+
+<body>
+	<script>  //위치는 어디에넣어도 상관없음
+		const studentAry = [   //배열에 객체를 담음 
+			{sno: 1, sname: '홍길동', score: 80},
+			{sno: 2, sname: '박민서', score: 88},
+			{sno: 3, sname: '최창식', score: 92}
+		]
+
+
+		let sum = avg = 0;
+		studentAry.forEach(function (item, idx, ary) {   //포문 
+			// console.log(item);
+			//console.log(`이름:${item.sname}`);
+			sum += item.score;
+			if (idx == ary.length - 1) {   //배열 자체이용해서 구할때 
+				avg = sum / ary.length  //라고해도된대 
+				avg = avg.toFixed(2);  //소수 둘째자리까지 
+			}
+		})
+
+		//avg=sum/studentAry.length;
+
+		console.log(`점수 합계:${sum} 평균:${avg}`);
+
+
+	</script>
+</body>
+
+</html>

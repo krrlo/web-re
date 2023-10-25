@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>js/fuction.html</title>
+    
+    <style>
+		table, th, td {
+			border :1px solid saddlebrown;
+		}
+	</style>
+	
+</head>
+
+<body>
+    <table border="1">
+        <tr>
+            <th>이름</th>
+            <td><input type="text" name="" id="name" value="홍길동"></td>
+        </tr>
+        <tr>
+            <th>나이</th>
+            <td><input type="number" name="" id="age" value="20" ></td>
+        </tr>
+        <tr>
+            <th>키</th>
+            <td><input type="text" name="" id="height" value="175"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button id="saveBtn">저장</button>  <!--button.saveBtn{저장}-->
+            </td>
+        </tr>
+    </table>
+    
+    <div id="show">
+		<table>
+			<thead>
+				<tr>
+					<th>이름</th>
+					<th>나이</th>
+					<th>키</th>
+					<th>소개</th>
+					<th>
+						삭제
+					</th>
+				</tr>
+			</thead>
+			
+			
+			
+			<tbody id ="list"></tbody>
+		</table>
+    </div>
+    <script src="function4.js">  </script>
+        <!--컨트롤 클릭 하면--> 
+  
+</body>
+
+</html>
