@@ -24,13 +24,11 @@ document.getElementById('saveBtn').onclick = function(e) {
 	let height = document.getElementById('height').value
 
 	const mem = new Member(name, age, height);  //새 객체 만듦 생성자 함수 이용해서 ///저장 받은애로 
-	let str = makeTr(mem);
+	let str = makeTr(mem);   //만들어진 mem 객체를 makrTr함수에 넣어서 나온 값을 str에 다시 넣어라 
 
-	if (
-		document.getElementById('name').value == ""
-		
-			) {
-		alert('값넣어라');
+	if(!name || !age || !height){
+		alert('값을 입력하세요!!!');
+		return; //함수종료하라는 뜻 
 	}
 
 	function makeTr(member) {
