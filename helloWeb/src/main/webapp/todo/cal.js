@@ -44,7 +44,7 @@ function makebody() {
 			else{  //아무것도아니면 그냥 출력 
 				body+='<td>'+i+'</td>';
 			}	
-		}
+		}//else 
 		
 		if (i % 7 == 0) { 
 		         // 7마다 줄바꿈 

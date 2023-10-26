@@ -1,8 +1,9 @@
 //module.js
 ///
-import { friend ,friendInfo } from './friend.js'; 
+import {friend ,friendInfo } from './friend.js'; 
 import {cal} from '../todo/calendarobj.js';
 ///프렌드js에 있는 함수를 사용할수있음. 
+//cal객체에 접근할수 있게되었음  cal메서드 사용 가능해졌음 
 //동일한 전역에 있으므로.. 
 
 
@@ -16,8 +17,6 @@ import {cal} from '../todo/calendarobj.js';
 //}
 
 
-
-
 console.log(friend.showInfo()); //friend객체의 showInfo를 호출 
 console.log(friendInfo(friend));    //함수호출 ㅎㅎㅎ 
 cal.showCalendar();  //cal 객체로 cal.show메소드 호출 가능 
@@ -26,4 +25,3 @@ cal.showCalendar();  //cal 객체로 cal.show메소드 호출 가능
 //html<script type ="module" src ="module.js"></script> 
 //로 선언해 줘야함 
 
-//cal.show >>달력 부르기 

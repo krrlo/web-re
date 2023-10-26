@@ -26,3 +26,4 @@
  
  export {friend,friendInfo}
  //export 한 애만 외부로 노출될수있게 
+ //friend 객체와 friendInfo 함수를 export

@@ -41,9 +41,16 @@ const member = {
 
 //for of 배열
 
-//객체의 속성을 보고싶으면 for ..in 
-for (let prop in member){
-	console.log(member[prop])  //값이 나옴 
+//member객체의 속성을 보고싶으면 for ..in 
+for (let prop in member){     //변수 in 객체 
+	console.log(member[prop])   //값이나옴 
+	console.log(prop)  //속성이나오고 
+}
+	
+	
+	
+	
+	
 	
 	
 	//속성의 값을 보고싶으면   member.name / member['age']
@@ -65,4 +72,3 @@ const students = [
 member.makeHtml(students);
 member.showPage(document.getElementById('show'));
 
-}
