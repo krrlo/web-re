@@ -11,7 +11,7 @@ const obj = {   //객체생성
 	hobbies :[
 		'독서' , '영화보기' , '여행','요리'
 	]
-}
+}//객체
 
 
 obj.addFriend =function (friend){  //친구 추가 메서드 
