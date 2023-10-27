@@ -25,7 +25,7 @@
 	
 	//2.생년월일 입력 => 남자/여자,
 	
-	check('9503054678532');
+	check('950305-4678532');
 	
 	function check(ssn) {
 		// 어떤 형태로 들어오건 분간해야댐 
@@ -33,12 +33,13 @@
 	result=ssn.slice(-7)    //뒤에서부터 7자리 .. 
 	console.log(result)
 	
-	if(result.charAt(0) ==3){
+	if(result.charAt(0) ==3){  
 		console.log("남자")
 	}else{
 		console.log("여자")
 	}	
 		}
+	
 	
 	
 	

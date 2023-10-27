@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+<record>
+<id>1</id>
+<first_name>Stanislas</first_name>
+<email>sheino0@soundcloud.com</email>
+</record>
+
+<record>
+<id>2</id>
+<first_name>Kristen</first_name>
+<email>kcristofvao1@shutterfly.com</email>
+</record>
+
+<record>
+<id>3</id>
+<first_name>Bobbe</first_name>
+<email>bsabathier2@weebly.com</email>
+</record>
+
+
+<record>
+<id>4</id>
+<first_name>Gregory</first_name>
+<email>gesom3@xrea.com</email>
+</record>
+</dataset>
