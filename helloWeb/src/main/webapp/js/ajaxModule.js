@@ -1,4 +1,4 @@
-//ajaxModule.js
+//ajaxModule.js   //1027
 
 const table = {
 
@@ -20,8 +20,8 @@ const table = {
 				body += "<td>" + obj[prop] + "</td>"
 			}
 			body += "</tr>";
-		})
-		body += "<tbody>";
+		}) //for each 
+		body += "</tbody>";
 		return body;
 	},
 

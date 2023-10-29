@@ -36,10 +36,10 @@ function makebody() {
 			body += '<td style="color:red;">' + i + '</td>';
 		}else{
 			//body += '<td>' + i + '</td>';         //아니면 그냥 
-			if(i == today.getDate()){   //오늘날자에는 파란색 
+			if(i == today.getDate()){   //오늘날자에는 배경 노랑
 			body += '<td style="color:yellow;">' + i + '</td>';
 			}else if(i % 7 == 0){  //토요일에 파란색 
-				body += '<td style="color:blue;">' + i + '</td>';
+				body += '<td style="color:red;">' + i + '</td>';
 			}
 			else{  //아무것도아니면 그냥 출력 
 				body+='<td>'+i+'</td>';

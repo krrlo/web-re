@@ -14,36 +14,30 @@ import org.yedam.service.MemberService;
 import org.yedam.service.MemberVO;
 import org.yedam.service.serviceImpl.MemberServiceImpl;
 
-/**
- * Servlet implementation class MemberListServ
- */
+
 @WebServlet("/MemberListServ2")
 public class MemberListServ2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+  
     public MemberListServ2() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	MemberService svc = new MemberServiceImpl();
 	List <MemberVO> list = svc.memberList();
 	System.out.println("JSON데이터 입니다");
 	
-	response.setContentType("text/json;charset=utf-8");
+	response.setContentType("text/json;charset=utf-8");  //json형식으로 
 	
 	PrintWriter out = response.getWriter();
 	//[{"mid" : value, "pass" :value, "name" :value, "phone" :value},{},{}]
-	//제이슨 포맷이래...........뭔데이게??????????????????????
-	//이거 형식으로 포문 돌리래??????????
+	//가지고온 list를 제이슨 형식으로 바꾸기 
+	 
 	String str = "[";
 	int cnt = 0;
 	for(MemberVO vo : list) {
@@ -61,11 +55,8 @@ public class MemberListServ2 extends HttpServlet {
 	out.print(str);
 	}
  
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 

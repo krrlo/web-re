@@ -1,4 +1,4 @@
-//array3.js  //배열에서 원하는 문자 번호 찾기 
+//array3.js  //배열에서 원하는 문자 번호 찾기   1027
 
 
 //String에서 글자 찾기 
@@ -15,7 +15,7 @@ result = names.indexOf("라이언");
 if(result == -1){
 	console.log("없는이름인데요?")
 }else{
-	console.log("몇번 위치에 있냐면요.... >> " + (result+1));
+	console.log("몇번 위치에 있냐면요.... >>> " + (result+1));
 }
 
 
@@ -38,5 +38,10 @@ members.forEach(function(m){
 	}
 })
 
-console.log("민식이가 몇명있냐면..>>" , sum);
+
+console.log("민식이가 몇명있냐면..>>" , sum , "명있어요..");
+
+
+
+
 

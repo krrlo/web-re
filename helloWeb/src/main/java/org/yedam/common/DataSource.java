@@ -14,7 +14,7 @@ public class DataSource {
 	  }
 	
 	  private static String driver = "oracle.jdbc.OracleDriver";            
-	  private static String url = "jdbc:oracle:thin:@192.168.0.36:1521:xe";  
+	  private static String url = "jdbc:oracle:thin:@192.168.0.16:1521:xe";  //학원 0.36 
 	  private static String user = "hr";
 	  private static String password = "1234";
 	  

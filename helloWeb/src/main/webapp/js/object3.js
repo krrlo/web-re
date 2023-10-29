@@ -50,9 +50,6 @@ for (let prop in member){     //변수 in 객체
 	
 	
 	
-	
-	
-	
 	//속성의 값을 보고싶으면   member.name / member['age']
 	//console.log(typeof member[prop]);  //>name..age..나옴 
 	

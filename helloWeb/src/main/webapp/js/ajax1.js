@@ -1,4 +1,4 @@
-//ajax1.js
+//ajax1.js  //1027
 
 //비동기vs동기 
 //
@@ -43,65 +43,91 @@ console.log('비동기', friends);
 
 
 
-//비동기방식????????????????????뭐냐고????????????????????????????????????
-//이게 뭔데??????????????????????????????????????????????
-
-
-let newMember = {mid:"M009" , pass: "9999" , name:"민식이" , phone:"010-9999-9999"}
-//tr만듣는것처럼 만들어서  테이블이 만들어지면 
-//4번째 위치에 얘가 나오게 하래 tbody = "list" 추가 
 
 
 
 ////////////////////////////////////////
 ///1)ajax실행 
-let xhtp = new XMLHttpRequest();            //xhtp는 객체임 
-xhtp.open('get', '../MemberListServ2');  //객체가 oepn이라는 아 먼소리ㅏㅇㄴ머; 아
-xhtp.send();   //xhtp가져오겟다고?????????
-xhtp.onload = loadJson;   //이벤트가 발생하면... 하 MXL()이 없대.. 
+let xhtp = new XMLHttpRequest();            //xhtp는 객체임   //서버와 상호작용을 위해..? 
+xhtp.open('get', '../MemberListServ2');   //(서버와 통신하여 수행할 get post...값설정  , 통신 요청을 처리할 주소 값)
+xhtp.send();   //요청을 서버에 전달 
+xhtp.onload = loadJson;   //함수부를때 ()이 없음 
 
-   function loadJson(){          //'../MemberListServ2');이거 2번으로 바꾸래 
-	   console.log(xhtp.responseText);
-	   let result = JSON.parse(xhtp.responseText);  //제이슨문자열을 자바 오브젝트로 변경해줌 
-	   console.log(result);
-	   
-	   
-	   //화면에 출력되게 하래
-	     
-	   
-   }
-   
-   /////////////////////////////////////////////
-   function loadXML() {   //온로드 함수선언 
+
+
+let newMember = { mid: "M009", pass: "8888", name: "두웅이", phone: "010-9999-9999" }
+//마지막 위치에 얘 추가하기 
+
+
+
+
+/////////////////////////////////////////////
+
+function loadJson() {         
+	console.log(xhtp.responseText);    //json문자 형태로 data가 들어가있음 
+	let json = JSON.parse(xhtp.responseText);  //제이슨문자열을 자바 오브젝트로 변경해줌 
+	console.log(json);   // json 배열 생성 [{객체} {객체}]  배열 형태로 만들어짐 
+
+    let titles = ["회원번호", "비번", "이름", "연락처"];
+    
+    let jsontable =table.makeTable(titles, json);  //만들어진 배열로 json테이블만들기
+    console.log(jsontable);
+    
+    document.getElementById('show').innerHTML = jsontable;  
+    
+    //마지막 위치에 새로운  한 행 넣기 
+    let newjson=table.makeTr(newMember);
+     document.getElementById('list').innerHTML += newjson;  
+     
+}  //loadJson
+
+
+
+
+
+/////////////////////////////////////////////
+function loadXML() {   //온로드 함수선언 
 	//console.log(xhtp)   // >> XMLHttpRequest
-	console.log(xhtp.responseXML)  //>>#document
-	let doc = xhtp.responseXML;
+	console.log(xhtp.responseXML)  //>>#document 열면 <dataset> <record> xml문서가 나옴 
+	let doc = xhtp.responseXML;  //doc이란 변수에 xml문서 저장 
 	let records = doc.getElementsByTagName('record')   //레코드라는 태그내임을 가져오겠습니다
-	console.log(records);   //HTMLCollection(4) [record, record, record, record]
-	//onload이벤트가 발생하면.. 
+	console.log(records);  
+	 //HTMLCollection(4) [record, record, record, record]  //배열 형식으로 가져옴 
 	//console.log(records[0].children[0].innerHTML);// >1번을 가져옴 
+	
 	let titles = ["회원번호", "비번", "이름", "연락처"];
 	let dataAry = [];
-	for (let record of records) {
-		let obj = {
-			mid: record.children[0].textContent,   ///>> id래
+	
+																	//		children
+	//records 배열 돌려서 값 빼내기 												0:mid	
+	for (let record of records) {									//	    1:pass				
+		let obj = {                     //객체하나생성 						2:name
+			mid: record.children[0].textContent,   ///>> id래				3:phone
 			pass: record.children[1].textContent,   ///>> 이름
 			name: record.children[2].textContent,  ///>> 비번
 			phone: record.children[3].textContent   ///>> 연락처
 		}
-		
-		dataAry.push(obj);
-		
-	}
 
-		let result = table.makeTable(titles, dataAry);
-		console.log(result);
-		document.getElementById('show').innerHTML = result;
-           
-           
-         let tr = table.makeTr(newMember)   // 한줄 만듦 
-         document.getElementById('list').innerHTML += tr;
-  
-}//onload
+		dataAry.push(obj); //만든 객체를 dataAry배열에 하나씩 넣기 
+
+	}//포 
+	
+	console.log(dataAry);   
+	//[{…}, {…}, {…}, {…}]
+	// 0 : {mid: 'M001', pass: '1111', name: '홍길동', phone: '010-1234-4567'}	
+	// 1 : {mid: 'M002', pass: '2222', name: '서영희', phone: '010-4567-8762'}
+
+	let result = table.makeTable(titles, dataAry);    //table객체의 makeTable이라는 함수 사용해서 가져온 데이터들로 테이블 만들기
+	console.log(result);       //titles, dataAry배열을 매개값으로 넘기기 
+	document.getElementById('show').innerHTML = result;              //div id show에 만든 테이블 넣기 
+
+//let newMember = { mid: "M009", pass: "9999", name: "민식이", phone: "010-9999-9999" }
+	let tr = table.makeTr(newMember)   // 위에 데이터 1줄 추가하려면 
+	document.getElementById('list').innerHTML += tr;
+
+}//onload함수 끝 
+
+
+
 
 

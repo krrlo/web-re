@@ -1,13 +1,13 @@
-	//array5.js 배열을 정렬 해주는..하ㅣㄴ이러;ㅏㅁㅇ널;인
+	//array5.js 배열을 정렬 해주는..  1027
 	
 	//console.log(펭수<라이언)  문자비교도 가능???????????????????
 	const arr2 = ['펭수', '라이언', '어피치', '콘', '무지'];
 	
 	arr2.sort(function(a, b) {
 		if (a < b) {
-			return -1;
+			return -1;  //오름차순 
 		} else {
-			return 1;
+			return 1;   //내림차순  걍외워 
 		}
 	});
 	
@@ -37,8 +37,8 @@
 	{"id":10,"first_name":"Travus","email":"tchallener9@discuz.net"}]`;
 	
 	
-	let members = JSON.parse(json);   //배열 이름순으로 정렬 
-	members.sort(function(a, b) {
+	let members = JSON.parse(json);   
+	members.sort(function(a, b) {   //배열 이름순으로 정렬 
 		if (a.first_name < b.first_name) {
 			return -1;
 		} else {
