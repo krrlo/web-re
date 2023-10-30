@@ -5,65 +5,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id = "show"> 
-		
-	</div>
+	<div id = "show"> </div>
 
-<script>
+<script type="module" src="test2.js">  </script>
 	
-const novemberCal = {
-	
-	makeHead(){
-		const days = ['일', '월', '화', '수', '목', '금', '토'];
-        let head = '';
-        head += '<table border = "1">'
-        head += "<thead><tr>"
-		head += days.forEach(obj => head +='<th>' + obj + '</th>')
-	    head += "</tr></thead>"
-	    document.getElementById('show').innerHTML += head;
-	},
 
-
-  	
-  	makeBody(){
-		  let body = '';
-		  body += '<tbody>';
-		  body += '<tr>';
-		  for (let i = 1; i <=30; i++){
-			  body += '<td>' + i + '<td>'
-			  
-			  if(i%7 == 0){
-				  body +='</tr><tr>'
-					  
-			  }
-		  }//포
-				  
-	
-		  body += '</tr>'
-		  body += '</tbody>'
-		  body += '</table>'
-		  document.getElementById('show').innerHTML += body;
-	  },
-  	
-  	
-  	
-  	show(){
-		  this.makeHead();
-		  this.makeBody();
-	
-	  }
-  	
-  	
-	}///novembercal
-	
-	
-novemberCal.show();
-	
-	
-	
-	
-</script>
-	
 
 </body>
 </html>

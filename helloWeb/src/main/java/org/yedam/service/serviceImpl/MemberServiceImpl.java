@@ -55,7 +55,6 @@ public class MemberServiceImpl implements MemberService {
 		String sql = "insert into member values(? , ? , ? , ?)";
 		conn = dao.getConnection();
 		try {
-			
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getMid());
 			psmt.setString(2, vo.getPass());
@@ -89,7 +88,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 ////////
 
-    //멤버 업데이트 메소드 
+    //멤버 수정 메소드 
 	@Override
 	public boolean modifyMember(MemberVO vo) {
 		

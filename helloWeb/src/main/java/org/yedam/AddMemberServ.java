@@ -42,18 +42,18 @@ public class AddMemberServ extends HttpServlet {
 		
 		MemberVO vo = new MemberVO(mid, pass, name, phone);
 		//위 데이터로 vo객체 하나 만듦 
-		PrintWriter out = response.getWriter();  //보낼거다 
+		PrintWriter out = response.getWriter();  
 		
 		//리턴코드랑 vo 둘다 보내고 싶으면
 		Map<String, Object> map = new HashMap<>();
 		//key value 형식으로 보내려고 
 		
-		//자바객체 넣어서 보내고 싶으면 
 		Gson gson = new GsonBuilder().create();
 		//Java Object를 Json 문자열로 변환할 수 있고, Json 문자열을 Java Object로 변환할 수 있게
 		String json = gson.toJson(vo);  
-		
+		//자바 객체 vo를 json형태로 변환해서 보냄 
 		MemberService svc = new MemberServiceImpl();
+		
 		if(svc.addMember(vo)) {
 			//{"retCode" : "ok"}    //정상적으로 처리되면 ok반환
 			//out.print("ok");
@@ -63,12 +63,12 @@ public class AddMemberServ extends HttpServlet {
 		}else {
 			//{"retCode" : "ng"}
 			//out.print(json);
-			map.put("code", "ng");
-			map.put("vo" , vo.getMid());
+			map.put("code", "ng");     //입력한 값대로 추가가 안된다면 
+			map.put("vo" , vo.getMid());  //이게콘솔에 출력되는데 responsText에 이 값이들어감?
 		} 
 		
 		json = gson.toJson(map); //string json에  //json으로 문자열 출력하겠습니당 
-		out.print(json); //내용을 ajax.html로 보냄 
+		out.print(json); //map 내용을 ajax.html로 보냄 
 		
 
 	}//doget end

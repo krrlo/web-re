@@ -61,7 +61,7 @@ public class ModMemberServ extends HttpServlet {
 		} 
 		
 		json = gson.toJson(map); 
-		out.print(json);
+		out.print(json); //얘를 다시 ajax2로보냄 
 		
 	}//do get 
 

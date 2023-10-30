@@ -6,66 +6,13 @@
 </head>
 <body>
 
-<table border="1">
-	<thead>
-		<tr>
-			<th>도서코드</th>
-			<th>도서명</th>
-			<th>저자</th>
-			<th>출판사</th>
-			<th>가격</th>
-		</tr>
-	</thead>
-	
-	<tbody id = "list">
-	</tbody>	
+<div id="show"></div>
 	
 	
-	
-</table>
 
 
+<script type="module" src="book.js">  </script>
 
-<script>
-	let xhtp = new XMLHttpRequest();    
-	xhtp.open('get', '../BookListServ'); 
-	xhtp.send();
-	xhtp.onload = loadJson;
-	
-	
-	function loadJson() {   
-	let json = JSON.parse(xhtp.responseText);
-	console.log(json);   //json배열을 trtd로만들어야함 
-
-	
-	
-		function maketr (json) {
-		let body ='';
-		body += "<tr>";   //매개값으로 이벤트와 this를 넘김    //this는 선택된 tr을 가르킴 
-		for (let prop in json) {
-			body += "<td>" + json[prop] + "</td>"
-		}
-		body += "</tr>"
-
-		return body;   //한줄 만들어서 리턴 
-	}
-
-	
-	json.forEach(obj =>{
-		for(let prop in obj){
-			console.log(obj[prop])
-		}
-		
-	})
-	
-	
-	document.getElementById('list').innerHTML = maketr(json);
-	
-
-}//로드제이슨 
-
-	
-</script>
 
 
 </body>

@@ -34,7 +34,7 @@ public class MemberListServ extends HttpServlet {
 	
 	response.setContentType("text/xml;charset=utf-8");  //xml이 utf-8형식이라는 것을 서버가 브라우저에게 알리는것 
 	
-	PrintWriter out = response.getWriter(); //출력 도구용 출력스트림에 텍스트 보낼거임   아래는 보낼 내용 
+	PrintWriter out = response.getWriter(); //출력 도구용 출력스트림에 텍스트 보낼거임  아래는 보낼 내용 
 	
 	String str = "<dataset>";
 	for(MemberVO vo : list) {           //db로 가져온 데이터를 xml형식으로 바꿈   

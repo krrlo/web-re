@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 //@Getter
 //@ToString
 
-@Data  //getsetto다 만들어줌..
+@Data
 @AllArgsConstructor  //생성자 만들어줘 MemberVO(string,str.str.str) 
 @NoArgsConstructor  //기본생성자 
 

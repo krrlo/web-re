@@ -37,21 +37,10 @@ public class BookListServ extends HttpServlet {
 		response.setContentType("text/json;charset=utf-8");  
 		
 		PrintWriter out = response.getWriter(); 
-//		
-//		String str = "<dataset>";
-//		for(BookVO vo : list) {             
-//			str += "<record>";
-//			str += "<book_code>" + vo.getBookCode() + "</book_code>";
-//			str += "<book_title>" + vo.getBookTitle() + "</book_title>";
-//			str += "<book_author>" + vo.getBookAuthor() + "</book_author>";
-//			str += "<book_press>" + vo.getBookPress() + "</book_press>";
-//			str += "<book_price>" + vo.getBookPrice() + "</book_price>";
-//			str += "</record>";
-//		}//포 
-//		str += "</dataset>";
+		
 		
 		Gson gson = new GsonBuilder().create();
-		String json = gson.toJson(list);
+		String json = gson.toJson(list);  //자바 객체를 list를 제이슨 포맷으로 만들어줌 
 		out.print(json);  
 		
 		
