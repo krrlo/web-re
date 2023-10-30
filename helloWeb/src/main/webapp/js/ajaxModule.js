@@ -15,15 +15,13 @@ const table = {
 	makeBody(dataAry = [{ mid, pass, name, phone }]) {    //객체타입으로 들어옴 
 		let body = "<tbody id = 'list'>";
 		dataAry.forEach(obj => {
-			body += "<tr>";
-			for (let prop in obj) {
-				body += "<td>" + obj[prop] + "</td>"
-			}
-			body += "</tr>";
+			body+=this.makeTr(obj)
 		}) //for each 
 		body += "</tbody>";
 		return body;
 	},
+
+
 
 	makeTable(titleAry, dataAry) {
 		let table = "<table border = '1'>";
@@ -34,10 +32,12 @@ const table = {
 	},
 
 
-	makeTr(obj) {
-
-		let body = '';
-		body += "<tr>";
+ //객체의 속성 값을 빼낼때 //한줄 추가하는 tr td생성
+ //tr부분을 클릭하면 수정가능하게 만들기 
+ //이벤트 = 이벤트 핸들러 
+ 	   	makeTr(obj) {
+		let body ='';
+		body += "<tr onclick ='showInfo(event,this)'>";   //매개값으로 이벤트와 this를 넘김    //this는 선택된 tr을 가르킴 
 		for (let prop in obj) {
 			body += "<td>" + obj[prop] + "</td>"
 		}

@@ -63,15 +63,15 @@ let newMember = { mid: "M009", pass: "8888", name: "두웅이", phone: "010-9999
 
 /////////////////////////////////////////////
 
-function loadJson() {         
-	console.log(xhtp.responseText);    //json문자 형태로 data가 들어가있음 
+function loadJson() {         //가지고온 데이터로 페이지를 그려주는게 목적임    
+//	console.log(xhtp.responseText);    //json문자 형태로 data가 들어가있음 
 	let json = JSON.parse(xhtp.responseText);  //제이슨문자열을 자바 오브젝트로 변경해줌 
 	console.log(json);   // json 배열 생성 [{객체} {객체}]  배열 형태로 만들어짐 
 
     let titles = ["회원번호", "비번", "이름", "연락처"];
     
     let jsontable =table.makeTable(titles, json);  //만들어진 배열로 json테이블만들기
-    console.log(jsontable);
+//    console.log(jsontable);
     
     document.getElementById('show').innerHTML = jsontable;  
     
@@ -82,6 +82,13 @@ function loadJson() {
 }  //loadJson
 
 
+//let dataAry[];/
+//json.forEach(memeber =>){
+//	dataAry.push({
+//		mid : member.mid, pass: member.pass,
+//		name: member.name, phone : member.phone
+//	})
+//})
 
 
 
@@ -92,7 +99,7 @@ function loadXML() {   //온로드 함수선언
 	let doc = xhtp.responseXML;  //doc이란 변수에 xml문서 저장 
 	let records = doc.getElementsByTagName('record')   //레코드라는 태그내임을 가져오겠습니다
 	console.log(records);  
-	 //HTMLCollection(4) [record, record, record, record]  //배열 형식으로 가져옴 
+	 //HTMLCollection(4) [record, record, record, record]  //배열 형식으로 가져옴  배열처럼 보이지만 실제 배열은 아님 
 	//console.log(records[0].children[0].innerHTML);// >1번을 가져옴 
 	
 	let titles = ["회원번호", "비번", "이름", "연락처"];
@@ -126,6 +133,7 @@ function loadXML() {   //온로드 함수선언
 	document.getElementById('list').innerHTML += tr;
 
 }//onload함수 끝 
+
 
 
 

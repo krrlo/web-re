@@ -1,5 +1,17 @@
 package org.yedam.service;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+//@Setter
+//@Getter
+//@ToString
+
+@Data  //getsetto다 만들어줌..
+@AllArgsConstructor  //생성자 만들어줘 MemberVO(string,str.str.str) 
+@NoArgsConstructor  //기본생성자 
+
 public class MemberVO {
        private String mid;    //회원번호
        private String pass;   //패스워드
@@ -7,45 +19,6 @@ public class MemberVO {
        private String phone;  //폰번호
        
        
-       
- 
-  
-	public String getMid() {
-		return mid;
-	}
-	public void setMid(String mid) {
-		this.mid = mid;
-	}
-	public String getPass() {
-		return pass;
-	}
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
-	
-	
-	@Override
-	public String toString() {
-		return "MemberVO [mid=" + mid + ", pass=" + pass + ", name=" + name + ", phone=" + phone + "]";
-	}
-       
-       
-       
-       
-
 
        
        

@@ -15,7 +15,7 @@ import org.yedam.service.MemberVO;
 import org.yedam.service.serviceImpl.MemberServiceImpl;
 
 
-@WebServlet("/MemberListServ2")
+@WebServlet("/MemberListServ2")  //주소를 치면 자바코드가 실행됨 //do get메소드가 실행되게 
 public class MemberListServ2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -52,7 +52,7 @@ public class MemberListServ2 extends HttpServlet {
 		}
 	}
 	str += "]";
-	out.print(str);
+	out.print(str);   //제이슨 형식 데이터를 화면에 출력되게 
 	}
  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

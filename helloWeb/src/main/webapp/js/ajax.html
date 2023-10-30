@@ -1,12 +1,69 @@
-<!DOCTYPE html>   <!-- 1027-->
+<!DOCTYPE html> <!-- 1027-->
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
+
 <body>
- <div id = "show"></div>
- 
- <script type = "module" src="ajax1.js">  </script>
+	<table border="1">
+		<tr>
+			<th>아이디</th>
+			<td><input id="mid"></td>
+		</tr>
+
+		<tr>
+			<th>비밀번호</th>
+			<td><input id="pass"></td>
+		</tr>
+
+		<tr>
+			<th>이름</th>
+			<td><input id="name"></td>
+		</tr>
+
+		<tr>
+			<th>연락처</th>
+			<td><input id="phone"></td>
+		</tr>
+
+		<tr>
+			<td><button id="addBtn" onclick="addMember()">등록</td>
+			<td><button id="modBtn" onclick="modMember()">수정</td>
+		</tr>
+	</table>
+	<hr>
+
+
+	<div id="show"></div>
+
+	<script>  //이 함수는 maketr 함수가 실행되면..?  //tr을 클릭하면 위에 내용 나오게 
+		function showInfo(e,obj) {   //event를 매개값으로 받겠습ㄴ디ㅏ..
+			console.log(e.target.parentElement);   //e.target;td
+			console.log(obj);   //this:tr
+			//tr의 하위 : 아이디, 비번, 이름 연락처\
+			console.log(obj.children); //tr하위요소들..td     //[td, td, td, td]
+			let mid = obj.children[0].innerHTML;
+			let pass = obj.children[1].innerHTML;
+			let name = obj.children[2].innerHTML;
+			let phone = obj.children[3].innerHTML;
+			
+			document.getElementById('mid').value =  mid;
+			document.getElementById('pass').value =  pass;
+			document.getElementById('name').value =  name;
+			document.getElementById('phone').value =  phone;
+			
+			//빈칸에 값이 뜨게 
+		}
+		
+		
+		
+		
+	</script>
+
+	<script type="module" src="ajax1.js">  </script>
+	<script type="module" src="ajax2.js">  </script>
 </body>
+
 </html>
