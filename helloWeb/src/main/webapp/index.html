@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>두웅이첫페이지</title>
+	<meta charset="UTF-8">
+	<title>두웅이첫페이지</title>
 </head>
+
 <body>
-	<h3>welcome to jueun's  home!</h3>
+	<h3>welcome to jueun's home!</h3>
 	<a href="board/board.html">게시판으로 이동</a><br>
 	<a href="LoginServlet">서블릿페이지</a><br>
-	
+
 	<ul>
 		<li>사과</li>
 		<li>복숭아</li>
@@ -17,10 +19,40 @@
 		<li>수박</li>
 		<li>참외</li>
 	</ul>
-<p>추가작업했서요오오오오오오오오</p>
-<p>a의 상태로 변경ㅇㅇ </p>
-<p>bbbbbb</p>
-
+	<p class ="first">추가작업했서요오오오오오오오오</p>
+	<p>a의 상태로 변경ㅇㅇ </p>
+	<p>bbbbbb</p>
+	<script>
+		let body = document.querySelector('body')//body태그 찾아오세요
+		//console.log(body)
+		//console.log(body.children)  //HTMLCollection(10) [h3, a, br, a, br, ul, p, p, p, script]
+		//console.log(body.children[5]);   //ul가져오기 
+		//console.log(body.children[5].children[2]);   //li가져오기 
+		//console.log(body.children[5].children[2].innerHTML ="메론");   //값바꾸기 
+		
+		//console.log(body.parentElement)  //body 의 상위요소 가져오고싶으면 
+		//console.log(body.parentElement.innerHTML= '');   지우기 
+		
+		//자바스크립트로 dom요소를 제어할수있음 
+		
+		//li의 포도 
+		let li7 = document.createElement('li');  //li를 만들고 싶음 
+		li7.innerHTML = '딸기추가추가';
+		console.log(li7);
+		document.querySelector('ul').appendChild(li7);  //부모요소 기준으로 하위요소를 붙힐때  appendchild
+		//화면에 나타내려면 
+		
+		let p4 = document.createElement('p');
+		p4.setAttribute('class', 'fourth');
+		p4.innerHTML= 'c의 상태변경 추가';  //<p class="fourth">c의 상태변경 추가</p>
+		document.querySelector('p:nth-of-type(3)').after(p4);  //3번째 p 뒤에 새로운 p를 추가하겠습니당
+		//dom을통해 페이지를 제어하고있는즁...............................// 어떤 요소의 뒤에 넣겠습니다 after
+	
+		
+		
+		
+	</script>
 
 </body>
+
 </html>

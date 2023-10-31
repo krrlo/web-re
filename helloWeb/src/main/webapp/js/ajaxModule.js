@@ -12,9 +12,9 @@ const table = {
 	},
 
 
-	makeBody(dataAry = [{ mid, pass, name, phone }]) {    //객체타입으로 들어옴 
+	makeBody(dataAry = [{ mid, pass, name, phone }]) {    //[{}] 배열 형태로 들어옴 
 		let body = "<tbody id = 'list'>";
-		dataAry.forEach(obj => {
+		dataAry.forEach(obj => {                         //배열안에있는 객체 하나가 들어옴 
 			body+=this.makeTr(obj)
 		}) //for each 
 		body += "</tbody>";

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js/fetch.html</title>
+
+<script type="module" src="fetch1.js"></script>
+
+</head>
+
+
+
+<body>
+	<div id ="show"></div>
+	
+<script>
+	//promise객체 생성  비동기 방식으로 처리하기위해서 //(fullfilled, pending, rejected) p241
+	const promise = new Promise(function(resolve){
+		setTimeout(function(){
+			console.log('실행');
+			resolve('Success');  //resolve함수의매개값으로 sucess를 줌 
+		},500);  //(실행할함수, 시간)
+	}); //매개값으로 함수를 받음 
+	
+	 
+	//정상적으로 코드가 실행이 되면 첫번째 매개값으로 온 함수를..?????  then 메소드가 정상적으로 실행이되면..??  
+	promise
+	.then((resolve) =>{            //resolve에 success가 넘어옴 
+		console.log('then' , resolve);          //then Success
+		return 'ok';  //promise반환 
+	})
+	.then((result) =>{          //ok라는 값을 전달 
+		console.log('2then' , result) //2then ok
+		return message;          //에러메세지 뜸 
+	})
+	.catch((err=>{
+		console.log('error' , err)
+	}));                      //잘못된 처리가 발생할때 catch메소드가 실행됨.   1,2,3 어디에서든 오류가 나면 
+	
+	//순차적으로 실행이된다 // 동기적인 방식으로 처리하고자할때
+	
+</script>
+</body>
+</html>

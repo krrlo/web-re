@@ -1,0 +1,39 @@
+!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>지도 생성하기</title>
+    
+</head>
+<body>
+<!-- 지도를 표시할 div 입니다 -->
+<div id="map" style="width:100%;height:350px;"></div>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ccbf7c00a4abdccc309ee86a23b4d813"></script>
+<script>
+	let href =location.href;
+	console.log(href)
+	let xpos =href.indexOf('?x')+3;    //실제 위도가 있는 위치값 49
+	let ypos =href.indexOf('&y')+3;    //61
+	
+	console.log(xpos,ypos)
+	
+	
+	let lat = href.substring(xpos,ypos-3);
+	
+	console.log(lat) //실제 위도값 
+	
+	let lng = href.substring(ypos)
+	console.log(lng)  //실제 경도 값 
+	
+var mapContainer = document.getElementById('map'), // 지도  를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표  //위도 //경도......lat lng
+        level: 6 // 지도의 확대 레벨
+    };
+
+// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+</script>
+</body>
+</html>

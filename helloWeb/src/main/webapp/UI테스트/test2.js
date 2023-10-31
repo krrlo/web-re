@@ -32,7 +32,7 @@ const novemberCal = {
 		resulttable += '</tr><tr>'
 		for (let i = 5; i <= 30; i++) {
 			resulttable += '<td>' + i + '</td>'
-			if (i == 11 || i == 18 || i == 25) {
+			if (i % 7 == 4) {
 				resulttable += '</tr><tr>'
 			}
 

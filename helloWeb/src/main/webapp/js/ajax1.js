@@ -50,7 +50,7 @@ console.log('비동기', friends);
 ///1)ajax실행 
 let xhtp = new XMLHttpRequest();            //xhtp는 객체임   //서버와 상호작용을 위해..? 
 xhtp.open('get', '../MemberListServ2');   //(서버와 통신하여 수행할 get post...값설정  , 통신 요청을 처리할 주소 값)
-xhtp.send();   //요청을 서버에 전달 
+xhtp.send();   //위의 요청을 서버에 전달 
 xhtp.onload = loadJson;   //함수부를때 ()이 없음 
 
 
