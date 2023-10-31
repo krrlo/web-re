@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -12,19 +12,18 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ccbf7c00a4abdccc309ee86a23b4d813"></script>
 <script>
 	let href =location.href;
-	console.log(href)
-	let xpos =href.indexOf('?x')+3;    //실제 위도가 있는 위치값 49
-	let ypos =href.indexOf('&y')+3;    //61
+	console.log(href) //daumapi.html?x=35.8328886&y=128.4953904
+	let xpos =href.indexOf('?x')+3;    
+	let ypos =href.indexOf('&y')+3;    
 	
-	console.log(xpos,ypos)
+	console.log(xpos,ypos)   //49,62
 	
 	
 	let lat = href.substring(xpos,ypos-3);
-	
-	console.log(lat) //실제 위도값 
+	console.log(lat) //실제 위도값    //35.8328886
 	
 	let lng = href.substring(ypos)
-	console.log(lng)  //실제 경도 값 
+	console.log(lng)  //실제 경도 값   //128.4953904
 	
 var mapContainer = document.getElementById('map'), // 지도  를 표시할 div 
     mapOption = { 

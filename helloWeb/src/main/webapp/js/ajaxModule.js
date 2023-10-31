@@ -32,10 +32,10 @@ const table = {
 	},
 
 
- //객체의 속성 값을 빼낼때 //한줄 추가하는 tr td생성
+ //객체의 속성 값을 빼낼때 //그 값으로 한줄 추가하는 tr td생성
  //tr부분을 클릭하면 수정가능하게 만들기 
  //이벤트 = 이벤트 핸들러 
- 	   	makeTr(obj) {
+ 	   	makeTr(obj) {  //객체 하나가 들어옴 
 		let body ='';
 		body += "<tr onclick ='showInfo(event,this)'>";   //매개값으로 이벤트와 this를 넘김    //this는 선택된 tr을 가르킴 
 		for (let prop in obj) {

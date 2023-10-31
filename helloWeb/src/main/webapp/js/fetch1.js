@@ -6,7 +6,7 @@ import { table } from './ajaxModule.js';
 fetch('../MemberListServ2')   //넘어온 값을 promise 객체로 만들어줌 //반환 값을 resolve로 넘겨줌 
 .then((resolve) =>{
 	console.log(resolve);  //이상한 형태로 나옴 
-	return resolve.json(); // 제이슨을 > 자바타입으로 
+	return resolve.json(); //제이슨을 > 자바타입으로 
 })
 
 .then((result)=>{

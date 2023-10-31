@@ -22,7 +22,7 @@ function addMember(e) {    //e 는 이벤트 유형이 넘어옴
 
 	const xhtp = new XMLHttpRequest();   //경로 맞추는거 모르게ㅒㅆ음 
 	xhtp.open('get', '../AddMemberServ.html?mid=' + mid +
-		'&pass=' + pass + '&name=' + name + '&phone=' + phone);  //받은값을 서블릿으로 보내는거..?
+		'&pass=' + pass + '&name=' + name + '&phone=' + phone);  //받은값을 서블릿으로 보내는거
 	xhtp.send(); //요청을 서버에 전달 
 
 	

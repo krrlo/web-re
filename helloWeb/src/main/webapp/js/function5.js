@@ -15,7 +15,7 @@ console.log('foreach' + sum1)
 sum1=0;   //초기화 
 sum1 =[10,20,30].reduce(function(acc,item,idx,ary){   //실행한 값을 반환해줌 
 	console.log(acc,item,idx);                      //acc 는 누적값  //return해서 나오는 값이 그다음 순번의 초기값이됨
-	return acc+item;                  //그다음 순번의 초기값이됨 
+	return acc;                  //그다음 순번의 초기값이됨 
 });    //0은 초기값       //이게없으면 달라짐 
 
 console.log('reduce' + sum1)  //최종 누적값이 sum1에 저장됨 30이 나옴 
