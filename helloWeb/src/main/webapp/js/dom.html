@@ -1,17 +1,56 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+
+	<style>
+		.center {
+			text-align: center;
+		}
+
+		.pagination {
+			display: inline-block;
+		}
+
+		.pagination a {
+			color: black;
+			float: left;
+			padding: 8px 16px;
+			text-decoration: none;
+			transition: background-color .3s;
+			border: 1px solid #ddd;
+			margin: 0 4px;
+		}
+
+		.pagination a.active {
+			background-color: #4CAF50;
+			color: white;
+			border: 1px solid #4CAF50;
+		}
+
+		.pagination a:hover:not(.active) {
+			background-color: #ddd;
+		}
+	</style>
+
+
+
 </head>
+
 <body>
 	<label>시도 선택하세요</label>
-	
+
 	<select id="sidoList">
 		<option>선택하세요</option>
 	</select>
-	
-<div id ="show"></div>
-<script type ="module" src ="dom3.js"></script>
+
+	<div id="show"></div>
+	<div class="center">
+		<div class="pagination"></div>
+	</div>
+	<script type="module" src="dom3.js"></script>
 </body>
+
 </html>
