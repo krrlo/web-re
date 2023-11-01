@@ -25,7 +25,7 @@ function fetchCallback(result) {
 
 	let sidoary = []; // 중복된 값이 제거된 시.도명이들어가있음 
 
-	for (let val of rawdata) {
+	for (let val of rawdata) { // rawdata = [{},{}]
 		if (sidoary.indexOf(val.sido) == -1) {    //sidoary배열에  val.sido가 없으면 추가 
 			sidoary.push(val.sido)
 		}
@@ -57,14 +57,13 @@ function fetchCallback(result) {
 		})   //조건에 만족하는 애들만 배열에 추가해줌 
 
 		console.log(filterAry)  //광주광역시 애들만 나옴   [{…}, {…}, {…}, {…}, {…}, {…}
-		genTable(filterAry)   //그걸로 테이블 만듦    //
+		genTable(filterAry)   //그걸로 테이블 만듦    // 광주광역시 , 1페이지 나오게 
 
 	}///이벤트함수 
 
 
-
-	//return center.sido == '서울특별시';
 	//첫 화면으로 출력할 애들 지정 
+	//return center.sido == '서울특별시';
 	let filterAry = rawdata.filter((center, idx) => idx < 20)
 	genTable(rawdata)
 
@@ -74,50 +73,65 @@ function fetchCallback(result) {
 
 
 
-//선택된 데이터만 (광주광역시) 그려지게 하려고 만든 함수 
-function genTable(rawdata = [], page = 21) {
+//선택된 데이터로 화면에 보여지게 하는 함수 
+function genTable(rawdata = [], page = 1) {
+	
+	
+    //헤드만들기 	
+	let thead = table.makeHead(titles); 
+	console.log(thead);
+
 
 	//초기화 안하면 밑에 그려짐 
 	document.querySelector("#show").innerHTML = '';
 
-	//첫번째~ 10번째 데이터 보여지게 나누기 
-	let startNo = (page - 1) *5; // 1페이지면 스타트 넘버 1   ,, 
-	let endNo = page * 5;   // 엔드넘버 10 나오게 
+	//한페이지에 데이터 몇행 나오게할지 
+	let startNo = (page - 1) *10; // rawdata의 0번 인덱스부터 
+	let endNo = page * 10;   //   9번 인덱스 데이터 출력 
 
 
-	//첫번째, 마지막 페이지 => 계산
+	//첫번째, 마지막 페이지 버튼 계산하기 
 	let totalCnt = rawdata.length;  
-	let lastPage = Math.ceil(totalCnt / 5); //전체 페이지 기준 마지막페이지 
-	let endPage = Math.ceil(page/5)*5;  //현재페이지 기준으로 계산한 마지막페이지 20
-	let beginPage = endPage -4;  //11
-	let prevPage =false,  nextPage= false;
+	let lastPage = Math.ceil(totalCnt / 5); //전체 페이지 기준 
+	let endPage;
+	if(page == 1 || page == 2 || page == 3){          //페이지가 1.2.3일때는 endPage가 5가되게, 그 이후로 endpage는 현재페이지의 +2 
+	    endPage= Math.ceil(page/5)*5;
+	}else{
+		endPage = page +2;
+	}
 	
+	    //현재페이지 기준으로  = 5 
+	let beginPage = endPage -4;  //1
+	
+	/// 이전페이지  , 이후페이지 버튼 생성하려고 조건 검 
+	let prevPage =false,  nextPage= false;
 	if(beginPage > 1){             
 		prevPage = true;
 	}
 	if(endPage<lastPage){  // 지금현재 창 마지막페이지 << 진짜 최종페이지 
 		nextPage=true;     // 뒤에 페이지 더 있다는 말 
 	}
-	if(endPage >lastPage){          //
+	if(endPage >lastPage){          
 		endPage = lastPage;
 	}
-	document.querySelector('.pagination').innerHTML = '';
 	
+	document.querySelector('.pagination').innerHTML = '';
+	//이거왜해??????????????????????
 	
 	
    //이전페이지 여부 
    if(prevPage){   //이전 페이지가 존재하면 
-	   let aTage = document.createElement('a');
-		aTage.setAttribute('href', '#');
-		aTage.innerHTML = '&laquo';
-		aTage.addEventListener('click', function(e) {
+	   let aTage = document.createElement('a');  //a태그 생성
+		aTage.setAttribute('href', '#');        
+		aTage.innerHTML = '&laquo';               //<<표시 넣고 
+		aTage.addEventListener('click', function(e) {   // <<를 클릭하면 그 전 페이지가 나오게
 			genTable(rawdata, beginPage-1)
 		})
-		document.querySelector('.pagination').append(aTage);
+		document.querySelector('.pagination').append(aTage); //.pagination 태그 밑에 
+		//만든 a태그 달아라 
    }	
    
  
-
    
 	
   //페이지 숫자  만들기 
@@ -130,8 +144,8 @@ function genTable(rawdata = [], page = 21) {
 		}
 		aTage.setAttribute('data-page', i);
 		aTage.addEventListener('click', function(e) {
-			genTable(rawdata, i)
-		})
+			genTable(rawdata, i) //클릭하면 그 페이지의 데이터가 나오게 
+		})//이벤트
 		document.querySelector('.pagination').append(aTage);
 	}
 
@@ -140,23 +154,17 @@ function genTable(rawdata = [], page = 21) {
 
   //이후페이지
     if(nextPage){   //이후 페이지가 존재하면 
-	   let aTage = document.createElement('a');
+	   let aTage = document.createElement('a');  //a태그만들어서 
 		aTage.setAttribute('href', '#');
-		aTage.innerHTML = '&raquo';
-		aTage.addEventListener('click', function(e) {
+		aTage.innerHTML = '&raquo';   //>>만들고 
+		aTage.addEventListener('click', function(e) {   // >>클릭하면 그 다음페이지가 그려지게 
 			genTable(rawdata, endPage+1)
 		})
 		document.querySelector('.pagination').append(aTage);
    }	
    
    
-   
-
-
-	let thead = table.makeHead(titles); //타이틀 배열 넣어서 헤드 만듦 
-	console.log(thead);
-
-
+  
 	/*let mapData = rawdata.map(center => {//원하는 데이터만 넣으려고  데이터 정리중...   //센터id	센터명 의료원 연락처 만 빼서 만들라고
 		let newCenter = {
 			id: center.id,
@@ -170,29 +178,25 @@ function genTable(rawdata = [], page = 21) {
 	});*/
 
 
-	//여기 rawdata에는 내가 선택한 시도가 들어있음 
+	//한페이지에 몇개의 데이터 행 보여줄지 설정 
 	let mapData = rawdata.reduce((acc, center, idx) => {
-		if (idx >= startNo && idx < endNo) {   //인덱스 값이 0 ~ 9
+		if (idx >= startNo && idx < endNo) {   //ex)rawdata인덱스 값이 0 ~ 9 인애들 
 			let newCenter = {
 				id: center.id,
 				centerName: center.centerName.replace('코로나19', ''),
 				sido: center.sido,
 				phoneNumber: center.phoneNumber,
-				lat: center.lat,
-				lng: center.lng,
+				lat: center.lat,   //숨길데이터
+				lng: center.lng,   //숨길데이터 
 				address : center.address
-				
-				
 			}
-			acc.push(newCenter);   //acc에는 인덱스가 0~9번인 애들만 들어가있음 
-		}   ///startNo 만족하는 애들만 나오게됨 
-		//생성한 객체를 acc[]에 집어넣기 
-		return acc;
+			acc.push(newCenter);   
+		}   
+		return acc;//acc에는 인덱스가 0~9번인 애들만 들어가있음 
 	}, []);
 
 
 	console.log(mapData);  //만들어진 mapData출력 
-
 	let tbody = table.makeBody(mapData);  //정리된 데이터로 바디 만들기 
 
 
@@ -205,7 +209,7 @@ function genTable(rawdata = [], page = 21) {
 
 	//지도가져오기 
 	//tr클릭 이벤트 등록하기 
-	//1.화면상의 tr 다 가져와서 이벤트 달아야함
+	//화면상의 tr 다 가져와서 이벤트 달아야함
 	let targetTr = document.querySelectorAll('tbody tr');   //tbody 안에있는 tr만 가져올래요  all일때만 포이치 함수 사용 가능 
 	//console.log(targetTr)
 	targetTr.forEach(tr => {    //화면상의 tr을 클릭하면 지도가 나오는 이벤트 등록 
@@ -216,7 +220,6 @@ function genTable(rawdata = [], page = 21) {
 			let lng = tr.dataset.lng;  //경도
 			window.open('daumapi.html?x=' + lat + '&y=' + lng)
 		})//이벤트 
-
 	})//포이치 
 
 

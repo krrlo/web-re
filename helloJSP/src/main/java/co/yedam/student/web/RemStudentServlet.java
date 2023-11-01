@@ -17,11 +17,11 @@ public class RemStudentServlet extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String sid =req.getParameter("sid");  //받아온아이디값으로 삭제함
+		String sid =req.getParameter("sid");  //html에서 받아온아이디값으로 삭제함
 		StudentService svc = new StudentServiceImpl();
 		if(svc.removeStudent(sid)) {
 			resp.getWriter().print("{\"retCode\" : \"OK\"}");  //정상적으로 삭제가되면.. do?sid=hong
-		} else {                         //제이슨타입 으로적으래 
+		} else {                         //제이슨타입 으로 html로 보냄 
 			resp.getWriter().print("{\"retCode\" : \"NG\"}");  //아니면..
 		}
 		 

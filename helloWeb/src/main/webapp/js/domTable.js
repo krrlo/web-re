@@ -31,14 +31,14 @@ export default {
 		let tr = document.createElement('tr')
 		tr.setAttribute('data-lat',center.lat);   //값을 담아 놓는다 //tr.dataset.lat
 		tr.setAttribute('data-lng',center.lng);                  //tr.dataset.lng
-		for (let prop in center) {                 //히든필드에 있는 값이 들어오면 trtd안만듦 
-                if(this.hiddenFields.indexOf(prop) != -1){  //들어온 값이 히든필드의 값이면 그냥 티알 안만들고 지나치기 
+		for (let prop in center) {                 
+                if(this.hiddenFields.indexOf(prop) != -1){  //prop 가 'lat' , 'lng' 이면 지나쳐 
 					continue;
 				}
 			let td = document.createElement('td')
-			td.innerHTML = center[prop];             //히든 값을 제외하고 td만들기 
+			td.innerHTML = center[prop];             
 			tr.append(td);
-		}
+		}//for
 		return tr;
 	}//tr
 

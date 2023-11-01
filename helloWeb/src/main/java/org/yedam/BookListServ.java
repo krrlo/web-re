@@ -36,7 +36,7 @@ public class BookListServ extends HttpServlet {
 		
 		response.setContentType("text/json;charset=utf-8");  
 		
-		PrintWriter out = response.getWriter(); 
+		PrintWriter out = response.getWriter();   //응답
 		
 		
 		Gson gson = new GsonBuilder().create();

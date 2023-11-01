@@ -11,7 +11,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override // 추가
 	public boolean addStudent(StudentVO vo) {
 
-		return dao.insert(vo) == 1; // true
+		return dao.insert(vo) == 1; // true라는 말 
 	}
 
 	@Override // 업데이트

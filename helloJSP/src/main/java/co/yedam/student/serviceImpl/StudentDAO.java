@@ -31,24 +31,25 @@ public class StudentDAO {
 		}
 	}
 
+	
 	// 추가
 	public int insert(StudentVO vo) {
 		String sql = "insert into student(student_id ,student_name,"
 				+ "student_password,student_dept,student_birthday) " + "values (?,?,?,?,?)";
-		conn = ds.getConnection();
+		
+		conn = ds.getConnection(); //연결 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		// date > string :sdf.format()
-		// string > date : sdf.pasre()
-								
-		System.out.println(sdf.format(vo.getStudentBirthday()));
+		
+		//System.out.println(sdf.format(vo.getStudentBirthday()));
+		
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getStudentId());
 			psmt.setString(2, vo.getStudentName());
 			psmt.setString(3, vo.getStudentPassword());
 			psmt.setString(4, vo.getStudentDept());
-			psmt.setString(5, sdf.format(vo.getStudentBirthday())); // vo의 값을 문자열로 변환
-			int r = psmt.executeUpdate();
+			psmt.setString(5, sdf.format(vo.getStudentBirthday())); // vo의 값을 문자열로 변환   // date > string :sdf.format()
+			int r = psmt.executeUpdate();  //성공했으면 1을 반환함 
 			return r;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -137,7 +138,7 @@ public class StudentDAO {
 
 	public StudentVO select(String sid) {
 
-		StudentVO vo = null; // 초
+		StudentVO vo = null; // 초기화 해줘야함 
 		String sql = "SELECT *FROM student where student_id=? ";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		conn = ds.getConnection();
