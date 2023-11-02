@@ -1,5 +1,5 @@
 //student.js
-//학생 리스트 보여주는 페이지 로딩되면서 바로 실행되는 코드...........
+//학생 전체리스트 보여주는 페이지 로딩되면서 바로 실행되는 코드...........
 fetch('../studentList.do')  //서블릿 실행 
 	.then(resolve => resolve.json())     //자바객체타입으로바꿈 
 	.then(result => {
@@ -49,8 +49,8 @@ function addCallback(e) {
 		.then(resolve => resolve.json()) // 등록여부 코드를 받아와서 자바타입으로 변환 
 		.then(result => {
 			if (result.retCode == 'OK') {
-				alert('등록성공');  				//필드명 : 실제 등록한 값 
-				//등록한 애를 화면에 한줄 추가해야하니까   //studentId: sid, studentName: sname, studentBirthday: birth
+				alert('등록성공');  				
+				//등록한 애를 화면에 한줄 추가해야하니까    //필드명 : 실제 등록한 값 
 				let tr = makeTr({ studentId: sid, studentName: sname, studentBirthday: birth })
 				document.querySelector('#list').append(tr)  //추가한 한 행을 list에 붙혀 
 			} else {
@@ -64,7 +64,7 @@ function addCallback(e) {
 //수정버튼 callback함수 정의 
 function modCallback() {
 	//사용자가 입력한 수정 값을 변수에 담음 
-	let id = document.querySelector('input[name=sid]').value;
+	let id = document.querySelector('input[name=sid]').value;  //어케알지..?
 	let pass = document.querySelector('input[name=pass]').value;
 	let name = document.querySelector('input[name=name]').value;
 	let birth = document.querySelector('input[name=birth]').value;
@@ -88,7 +88,7 @@ function modCallback() {
 				let parentElem = document.querySelector('#list');
 				parentElem.replaceChild(newTr, targetTr);   //부모 요소에서 자식 요소 바꿀때..?  새로운값, 바꿀대상 
 				console.log(document.getElementById("myModal"));
-				document.getElementById("myModal").style.display = 'none';
+				document.getElementById("myModal").style.display = 'none';  //수정완료되면 창닫음 
 			} else {
 				alert('수정실패');
 			}
@@ -118,9 +118,10 @@ function makeTr(obj) {   //학생 객체 하나가 들어옴
 	btn.setAttribute('data-sid', obj.studentId);    //버튼에 sid를 담아놓음 ... 삭제할때 쓸려고  <tr data-sid="10">
 	btn.innerHTML = '삭제';
 
-	btn.addEventListener('click', function(e) {            //버튼을 클릭하면 삭제.. 
+	btn.addEventListener('click', function(e) {  
+		console.log(e);          //버튼을 클릭하면 삭제되는 이벤트 등록 
 		//ajax호출 -> 서블릿 실행  // 지워야할 애의 아이디 값을 서블릿으로 보냄 
-		fetch('../delStudent.do?sid=' + obj.studentId)  //서블릿에 값을 전달함 
+		fetch('../delStudent.do?sid=' + obj.studentId)  //서블릿에 값을 전달함  
 			.then(resolve => resolve.json())  //서블릿으로 부터 받아온 결과를 자바 타입으로 변환 
 			.then(result => {          //서블릿 resp.getWriter().print 해서 보낸 값이 들어옴 
 				console.log(result);   //{retCode: 'OK'}
@@ -135,44 +136,46 @@ function makeTr(obj) {   //학생 객체 하나가 들어옴
 	})//버튼을 누르면 그 tr이 삭제가 되는 이벤트 등록 
 	td.append(btn);
 	tr.append(td);
-	return tr;  // 학생한명 tr 완성 
+	return tr;  // 삭제버튼 포함 학생한명 tr 완성 
 }//maketr
 
 
-//모달가져오기 
+//클릭하면 모달이 뜨게하는 이벤트 생성 
 function showModal(e) {
 	console.log(e.target.parentElement, this);
-	let id = this.children[0].innerHTML;  //이렇게 읽어오던지 
-	id = this.dataset.sid; // 'data-sid : st1 값 넣어놨으니까;  이렇게 읽어오던지
+	//클릭당한 애의 아이디를 읽어와야함 
+	//let id = this.children[0].innerHTML;  // 이렇게 읽어오던지 
+	id = this.dataset.sid; // tr에 'data-sid = st1 값 넣어놨으니까  이렇게 읽어오던지
 	console.log(id);  // id값 나옴    
 
 
 	// Get the modal
 	//클릭하면 클릭한거의 아이디값을 조회해서 그 애가 나오게해야함 
 
-	let param = `id=${id}`
-	fetch('../getStudent.do?' + param)   //서블릿에 값을 전달 
+	//let param = `id=${id}`
+	fetch('../getStudent.do?' + `id=${id}`)   //서블릿에 값을 전달 
 		.then(resolve => resolve.json())     //자바객체타입으로바꿈 
 		.then(result => {
-			console.log(result); //	out.print(json); 한 애들이 들어와있음  학생리스트들 
-
+			console.log(result); //	out.print(json); 수정할 학생 1건의 정보  
 
 			var modal = document.getElementById("myModal");
-			modal.style.display = "block";
-
+			modal.style.display = "block"; //창 뜨게 
+          
+          //result안에있는 값들을 빼내서 새로운 변수에 저장 
 			let data = {
 				id: result.studentId,
-				name: result.studentName, pass: result.studentPassword
-				, birth: result.studentBirthday
+				name: result.studentName,
+				pass: result.studentPassword,
+				birth: result.studentBirthday
 			};
 
 			console.log(data);
-			//수정상자안에 보여지는 값 
+			//수정상자안에서 조회되는 1건의 학생 정보 
 			modal.querySelector('h2').innerHTML = data.name;
 			modal.querySelector('input[name=pass]').value = data.pass;
 			modal.querySelector('input[name=name]').value = data.name;
 			modal.querySelector('input[name=birth]').value = data.birth;
-			modal.querySelector('input[name=sid]').value = data.id;
+			modal.querySelector('input[name=sid]').value = data.id; //얘는 화면에서 숨김 
 
 
 			// Get the <span> element that closes the modal
@@ -191,7 +194,7 @@ function showModal(e) {
 				}
 			}
 
-		})
+		})//then
 		.catch(err => console.log('에러', err))
 
 }//showModal end

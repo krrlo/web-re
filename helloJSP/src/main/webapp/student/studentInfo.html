@@ -10,7 +10,7 @@
 
 <body>
 	<h3>학생정보입력</h3>
-
+	<!--정보입력테이블-->
 	<table border="1">
 		<tr>
 			<th>아이디</th>
@@ -47,13 +47,13 @@
 
 		<tr>
 			<td colspan="2" align="center">
-				<button id="addBtn">저장</button> <!--button.saveBtn{저장}-->
+				<button id="addBtn">저장</button> 
 			</td>
 		</tr>
 	</table>
+    
 
-
-	<!--목록-->
+	<!--학생목록테이블-->
 	<div id="show">
 		<table border="1">
 			<thead>
@@ -64,6 +64,7 @@
 					<th>삭제</th>
 				</tr>
 			</thead>
+			
 			<tbody id="list">
 				<!--현재 추가된 애들 나옴 -->
 			</tbody>
@@ -71,7 +72,7 @@
 	</div>
 
 	<!-- The Modal -->
-	<div id="myModal" class="modal">  //style에 display속성이 none가 되어있어서안ㄷ보임
+	<div id="myModal" class="modal">
 
 		<!-- Modal content -->
 		<div class="modal-content">
@@ -79,8 +80,8 @@
 				<span class="close">&times;</span>
 				<h2>Modal Header</h2>  <!-- 바꿀 애 이름넣음  -->
 			</div>
-			
-			<div class="modal-body"> <!-- 수정칸 -->
+			<!-- 수정칸 -->
+			<div class="modal-body"> 
 				<input type="hidden" name="sid">
 				<p>비밀번호<input type = "text" name ="pass"></p>
 				<p>이름<input type = "text" name ="name"></p>
