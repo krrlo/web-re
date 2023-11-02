@@ -63,14 +63,18 @@ public class StudentListServlet extends HttpServlet{
 		List<StudentVO> list = svc.listStudent();
 		
 		
+		
 		//가지고온 list를 json타입으로 변경 ~~
-		Gson gson = new GsonBuilder().create();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		String json =gson.toJson(list); 
 		
 		PrintWriter out = resp.getWriter();   //resp에 응답정보가 있음 
 		out.print(json);  //json을  html로 보냄 
 		
 	}////
+	
+	
+	
 	
 	
 	@Override

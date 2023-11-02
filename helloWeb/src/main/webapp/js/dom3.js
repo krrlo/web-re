@@ -94,12 +94,11 @@ function genTable(rawdata = [], page = 1) {
 	let totalCnt = rawdata.length;  
 	let lastPage = Math.ceil(totalCnt / 5); //전체 페이지 기준 
 	let endPage;
-	if(page == 1 || page == 2 || page == 3){          //페이지가 1.2.3일때는 endPage가 5가되게, 그 이후로 endpage는 현재페이지의 +2 
+	if(page <= 3){          //페이지가 1.2.3일때는 endPage가 5가되게, 그 이후로 endpage는 현재페이지의 +2 
 	    endPage= Math.ceil(page/5)*5;
 	}else{
 		endPage = page +2;
 	}
-	
 	    //현재페이지 기준으로  = 5 
 	let beginPage = endPage -4;  //1
 	
