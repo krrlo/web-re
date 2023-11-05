@@ -25,7 +25,7 @@ public class AddStudentServlet extends HttpServlet{
 		//html에서 가져온 값으로 vo 만들기 
 		
 		//한글처리
-		req.setCharacterEncoding("utf-8");  //요청정보에 한글이 포함되어있다면 
+		req.setCharacterEncoding("utf-8");  //요청정보에 한글이 포함되어있다면   //post방식에서 한글 처리 할때 
 		
 		String sid =req.getParameter("id");       
 		String sname =req.getParameter("name");
@@ -49,7 +49,6 @@ public class AddStudentServlet extends HttpServlet{
 			
 			e.printStackTrace();
 		}
-		
 		
 		
 		StudentService svc = new StudentServiceImpl();

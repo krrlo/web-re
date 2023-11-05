@@ -34,10 +34,10 @@ public class GetStudentServlet  extends HttpServlet{
 		
 		StudentService svc = new StudentServiceImpl();
 		
-		vo = svc.getStudent(sid); 
+		vo = svc.getStudent(sid);   //vo를 다시 리턴받음 
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		String json =gson.toJson(vo);
+		String json =gson.toJson(vo);  //제이슨 타입으로 변경 
 		
 		
 		PrintWriter out = resp.getWriter();   //resp에 응답정보가 있음 

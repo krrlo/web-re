@@ -41,7 +41,7 @@
 		<td><%=vo.getViewCnt()%></td>
 		</tr>
 	</table>
-<p><a href ="boardList.do">목록으로가라</a>
+<p><a href ="boardList.do">목록으로가기</a>
 
 
 

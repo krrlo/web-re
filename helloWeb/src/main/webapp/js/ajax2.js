@@ -14,7 +14,7 @@ document.getElementById('modBtn').onclick = modMember;   //수정하려고
 function addMember(e) {    //e 는 이벤트 유형이 넘어옴 
 	let mid = document.getElementById('mid').value;
 	let pass = document.getElementById('pass').value;
-	let name = document.getElementㅉById('name').value;
+	let name = document.getElementById('name').value;
 	let phone = document.getElementById('phone').value;
 
 	//여기 변수 값을 넘김 

@@ -85,26 +85,24 @@ function addCallback(e) {
 	//post방식 : 파라미터 표현 안됨 , 값의제한 없음 , content-type지정. 
 
 	svc.addStudent(
-		//optObj;
+		//넘겨줄 객체 
 		{
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: param
 		},
 		//성공하면 실행할 함수
-
 		result => {
 			if (result.retCode == 'OK') {
 				alert('등록성공');
 				//등록한 애를 화면에 한줄 추가해야하니까    //필드명 : 실제 등록한 값 
-				let tr = makeTr({ studentId: sid, studentName: sname, studentBirthday: birth })
+				let tr = makeTr({studentId: sid, studentName: sname, studentBirthday: birth })
 				document.querySelector('#list').append(tr)  //추가한 한 행을 list에 붙혀 
 			} else {
 				alert('등록실패');
 			}
 		},
 		//실패하면 실행할 함수
-
 		err => console.log('에러' + err)
 
 	);
@@ -223,7 +221,9 @@ function makeTr(obj) {   //학생 객체 하나가 들어옴
 		console.log(e);          //버튼을 클릭하면 삭제되는 이벤트 등록 
 		//ajax호출 -> 서블릿 실행  // 지워야할 애의 아이디 값을 서블릿으로 보냄 
 
-		svc.removeStudnet(obj.studentId,
+		svc.removeStudnet(
+			//지울 학생 아이디 
+			obj.studentId,
 
 			//성공하면 실행할 함수 
 
@@ -278,9 +278,11 @@ function showModal(e) {
 
 
 
-	svc.getStudent(id,
+	svc.getStudent(
+		//조회할 애 아이디 
+		id,
 
-		//성공하면
+		//성공하면 실행할 함수 
 
 		result => {
 			console.log(result); //	out.print(json); 수정할 학생 1건의 정보  

@@ -37,7 +37,7 @@ public class AddMemberServ extends HttpServlet {
 		String phone = request.getParameter("phone");    //얘로 db 한줄 생성함 
 		//(mid,pass,name,phone)
 		//인스턴스를 만들기위한 용도로 
-		response.setCharacterEncoding("UTF-8");   //얘 추가
+		response.setCharacterEncoding("UTF-8");   //얘 추가 post방식에서 사용 
 		response.setContentType("text/json charset=UTF-8");  //얘추가하면 네임 나옴 
 		
 		MemberVO vo = new MemberVO(mid, pass, name, phone);

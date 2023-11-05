@@ -37,10 +37,13 @@ public class BoardDAO {
 
 	// 전체조회
 	public List<BoardVO> selectList() {
-		List<BoardVO> list = new ArrayList<>();
-		BoardVO vo;
+		
 		sql = "select *from board";
 		conn = ds.getConnection();
+		
+		List<BoardVO> list = new ArrayList<>();
+		BoardVO vo;
+		
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -71,10 +74,11 @@ public class BoardDAO {
 	// 한건조회
 	public BoardVO select(int boardNo) {
 
-		BoardVO vo = null; // 초기화 해줘야함
-		String sql = "SELECT *FROM board where board_no=?";
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String sql = "select *from board where board_no= ?";
 		conn = ds.getConnection();
+		
+		BoardVO vo = null; // 초기화 해줘야함
+		
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, boardNo);
@@ -106,17 +110,13 @@ public class BoardDAO {
 
 		String sql = "insert into board (board_no,title,content,writer)"
 				+ "values(seq_board.nextval,?,?,?)";
-
 		conn = ds.getConnection(); // 연결
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
+		
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getTitle());
 			psmt.setString(2, vo.getContent());
 			psmt.setString(3, vo.getWriter());
-			
-
 			int r = psmt.executeUpdate(); // 성공했으면 1을 반환함
 			return r;
 		} catch (SQLException e) {
@@ -132,9 +132,10 @@ public class BoardDAO {
 	
 	// 수정
 	public int update(BoardVO vo) {
-		String sql = "update board set title = ?, content=?,"
-				+ "image=nvl(?,imange), last_update=sysdate"
-				+ "where board_no?";
+		
+		String sql = "update board set title = ?, content= ?,"
+				+ "image=nvl(?,image), last_update=sysdate"
+				+ "where board_no = ?";
 
 		conn = ds.getConnection();
 		
@@ -156,15 +157,14 @@ public class BoardDAO {
 		}
 		return 0; // 처리된 건수가 없음 : 에러 났다는 뜻
 		
-		
 	}
 
 	// 삭제
 	public int delete(int boardNo) {
 		
-		String sql = "DELETE FROM board WHERE board_no = ?";
-
+		String sql = "delete from board where board_no = ?";
 		conn = ds.getConnection();
+		
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, boardNo);
@@ -179,10 +179,12 @@ public class BoardDAO {
 		return 0;
 	}
 	
-	//조회수 증가.
+	//조회수 증가
 	public int updateCnt(int boardNo) {
+		
 		sql = "update board set view_cnt = view_cnt +1 where board_no = ?";
 		conn = ds.getConnection();
+		
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, boardNo);
@@ -194,7 +196,6 @@ public class BoardDAO {
 			close();
 		}
 		return 0;
-		
 	}
 
 }///

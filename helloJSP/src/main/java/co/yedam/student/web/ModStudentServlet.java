@@ -28,10 +28,10 @@ public class ModStudentServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		req.setCharacterEncoding("utf-8"); // 사용자 요청정보에 한글이 포함되어있다면
-		resp.setContentType("utf-8"); //  응답정보에 한글이 포함되어있으면
+		resp.setContentType("text/json;charset=utf-8"); //  응답정보에 한글이 포함되어있으면
 		resp.setCharacterEncoding("utf-8");  
 		
-		String sid = req.getParameter("id"); // 서블릿에서 불러와서 변수에 저장
+		String sid = req.getParameter("id"); // html에서 불러와서 변수에 저장
 		String pw = req.getParameter("password");
 		String sname = req.getParameter("name");
 		String birth = req.getParameter("birthday");

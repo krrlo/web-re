@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
- 	<h3>게시판 목록.진짜 정신나가겟당 ㅎㅎㅎㅎㅎ </h3>
+ 	<h3>게시판 목록.하하하하 </h3>
  	
  	<%
  	
@@ -26,6 +26,7 @@
  	<th>작성자</th>
  	<th>작성일자</th>
  	<tbody>
+ 	
  	<% 
  	for (BoardVO vo : list){ %>
  		<tr>
@@ -40,8 +41,8 @@
  	</tbody>
  	</table>
  	<p>
- 	<a href="boardForm.do">등록화면</a>
- 	
+ 	<a href="boardForm.do">게시글 등록하기</a>
+ 	 
  	
 </body>
 </html>
