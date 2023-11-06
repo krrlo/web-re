@@ -14,6 +14,11 @@ public interface BoardService {
 	public boolean removeBoard(int boardNo);
 	
 	
+	//로그인처리
+	public MemberVO loginCheck(String id, String pw);
 	
+	//전체 멤버 조회 
+	public List <MemberVO> memberList();
+
 
 }

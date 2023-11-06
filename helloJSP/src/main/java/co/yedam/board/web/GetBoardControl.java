@@ -29,4 +29,4 @@ public class GetBoardControl implements Command {
 
 	}//execute함수 
 
-}
+} 

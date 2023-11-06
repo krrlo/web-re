@@ -3,13 +3,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
+
+<%@include file = "../layout/menu.jsp" %>
+<%@include file = "../layout/header.jsp" %>
+
+
  	<h3>게시판 목록.하하하하 </h3>
  	
  	<%
@@ -18,7 +17,7 @@
  	
  	%>
  	
- 	<table border="1">
+ 	<table class="table">
  	<thead>
  	<tr>
  	<th>글번호</th>
@@ -43,6 +42,3 @@
  	<p>
  	<a href="boardForm.do">게시글 등록하기</a>
  	 
- 	
-</body>
-</html>

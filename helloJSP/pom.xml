@@ -8,6 +8,16 @@
 	<packaging>war</packaging>
 	<description>jsp프로젝트 연습</description>
 	<dependencies>
+
+
+		<!-- https://mvnrepository.com/artifact/servlets.com/cos -->
+		<dependency>
+			<groupId>servlets.com</groupId>
+			<artifactId>cos</artifactId>
+			<version>05Nov2002</version>
+		</dependency>
+
+
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>

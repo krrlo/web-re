@@ -10,7 +10,7 @@
 
 <body>
 <%
- response.sendRedirect("boardList.do");
+ response.sendRedirect("main.do");
 %>
 
 <a href="FirstServlet.do">서블릿링크</a>
