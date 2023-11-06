@@ -21,7 +21,7 @@ public class RemoveBoardControl implements Command {
 		if (svc.removeBoard(Integer.parseInt(bno))) { // 삭제진행 
 			try {
 				resp.sendRedirect("boardList.do"); // 글 삭제가 잘 됐으면 리스트 보여라 
-			} catch (IOException e) { // resp.sendRedirectresp , boardList.do가 실행되어 추가된 정보까지 나옴
+			} catch (IOException e) { // boardList.do가 실행되어  삭제완료된 결과를 보여줌 
 				e.printStackTrace();
 			}
 		} else {

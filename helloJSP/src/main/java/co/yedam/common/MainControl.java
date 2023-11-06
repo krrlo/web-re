@@ -11,8 +11,8 @@ public class MainControl implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
-		
-		try {
+		//메인 화면 나오게 하는
+		try {  //경로재지정
 			req.getRequestDispatcher("WEB-INF/main/main.jsp") 
 			.forward(req, resp);
 		} catch (ServletException e) {

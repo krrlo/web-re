@@ -9,7 +9,7 @@
 <%@include file = "../layout/header.jsp" %>
 
 
- 	<h3>게시판 목록.하하하하 </h3>
+ 	<h3>게시판 목록</h3>
  	
  	<%
  	
@@ -37,8 +37,10 @@
  	<%
  	}
  	%>  
+ 	
  	</tbody>
  	</table>
  	<p>
+ 	
  	<a href="boardForm.do">게시글 등록하기</a>
  	 

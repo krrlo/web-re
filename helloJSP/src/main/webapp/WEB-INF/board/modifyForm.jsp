@@ -19,7 +19,8 @@
 <h3>수정화면</h3>
 	
 	<form action="modifyBoard.do">     <!-- 수정버튼 누르면 여기 입력된값으로 수정  -->
-		<input name="bno" value="<%=vo.getBoardNo()%>">
+		<!-- 수정 , 삭제 시 값을 넘기기 위해 인풋 이든 타입으로 지정  -->
+		<input type="hidden" name="bno" value="<%=vo.getBoardNo()%>">
 
 		<table border="1">
 			<tr>
@@ -50,8 +51,7 @@
 			</tr>
 
 		</table>
-		<p>
-			<a href="boardList.do">뒤로가기</a>
+		
 	</form>
 
 

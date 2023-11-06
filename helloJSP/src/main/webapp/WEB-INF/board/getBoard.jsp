@@ -18,9 +18,11 @@
 
 	<h3>조회화면</h3>
 
-	<form action="modifyForm.do" name="myFrm">   <!-- 수정버튼누르면 여기 값이 넘어감 -->
+	<form action="modifyForm.do" name="myFrm">   <!-- 수정,삭제 버튼누르면 여기 값이 넘어감 -->
+	
+	
+	    <!-- 화면상에는 안보이게 , 값은 수정,삭제할때 넘겨줘야하니까 -->
 		<input type="hidden" name="bno" value="<%=vo.getBoardNo()%>">
-
 
 		<table border="1">
 
@@ -46,13 +48,12 @@
 
 
 			<tr>
-				<th>이미지</th>
+				<th>이미지</th>   <!-- 이미지가 들어있으면 그 이미지를 보여주고 없으면 엑박안뜨게  -->
 				<% if (vo.getImage() != null) {%>
 				
 			    <td><img align="center" width="150px"
 					src="images/<%=vo.getImage()%>"></td>
-					
-					<%} %>
+					<% } %>
 				<!-- 20231026_083823.png -->
 			</tr>
 
@@ -73,24 +74,26 @@
 					<input type="button" class="btn btn-warning" value="삭제">
 					
 					
-				<%} else {%>
-				<input disabled type="submit" class="btn btn-primary" value="수정">
+				<%} else {%>    <!-- 아니면 수정삭제 버튼 접근못하게  -->
+					<input disabled type="submit" class="btn btn-primary" value="수정">
 					<input disabled  type="button" class="btn btn-warning" value="삭제">
 					<%} %>
 				</td>
 			</tr>
 
-
 		</table>
 	</form>
+	
 	<p>
 		<a href="boardList.do">목록으로가기</a>
 	</p>
-	<script>
+	
+	<script>   //삭제 버튼을 누르면 삭제form이 열리게 
 		document.querySelector('input[type=button]')
 		.addEventListener('click',function(e){
 			document.forms.myFrm.action = 'removeForm.do';
 			document.forms.myFrm.submit();
 		})
 	</script>
+	
 <%@include file = "../layout/footer.jsp" %>

@@ -15,13 +15,13 @@ public class RemoveFormControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		
+		//삭제 폼 
 		//조회화면에서 삭제버튼 누르면  삭제할 bno가 넘어옴 
 		String bno = req.getParameter("bno");
 		
 		BoardService svc = new 	BoardServiceImpl();
 		BoardVO vo =  svc.getBoard(Integer.parseInt(bno));  //삭제할 bno을 넣어주면  vo 객체 하나 데려옴 
-		req.setAttribute("vo", vo); 						//삭제대상 vo를 넘겨주고 
+		req.setAttribute("vo", vo); 						//삭제대상 vo를 넘겨주고 //화면에 그려주기 
 		try {
 			req.getRequestDispatcher("WEB-INF/board/removeForm.jsp")
 			.forward(req, resp);

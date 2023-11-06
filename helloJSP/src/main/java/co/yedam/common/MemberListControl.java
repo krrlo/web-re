@@ -22,8 +22,8 @@ public class MemberListControl implements Command {
 		req.setAttribute("list", list);   //리스트 담기 
 		
 		
-		
-		RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/board/memberList.jsp"); // 서블릿에서 다른페이지로 이동할 정보를 넘어주고
+		// 열어줄 jsp지정 
+		RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/board/memberList.jsp"); 
 		try {
 			rd.forward(req, resp);
 		} catch (Exception e) {

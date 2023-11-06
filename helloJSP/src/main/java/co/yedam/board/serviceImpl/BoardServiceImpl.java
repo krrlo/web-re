@@ -12,7 +12,7 @@ public class BoardServiceImpl implements BoardService{
 	
 	
 	@Override  //전체 조회
-	public List<BoardVO> boardList() {
+	public List<BoardVO> boardList() {    
 		
 		return dao.selectList();
 	}
@@ -41,13 +41,13 @@ public class BoardServiceImpl implements BoardService{
 		return dao.delete(boardNo) ==1; 
 	}
 
-	@Override
+	@Override  //로그인체크
 	public MemberVO loginCheck(String id, String pw) {
 		
 		return dao.getUser(id, pw);
 	}
 
-	@Override
+	@Override  //전체멤버조회
 	public List<MemberVO> memberList() {
 		
 		return dao.memberList();

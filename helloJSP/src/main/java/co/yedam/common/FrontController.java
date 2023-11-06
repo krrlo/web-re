@@ -43,21 +43,29 @@ public class FrontController extends HttpServlet {
 		//게시글 한건조회
 		map.put("/getBoard.do" , new GetBoardControl());  
 		
-		map.put("/boardForm.do", new BoardFormControl());  // 등록양식 켜기 
-		map.put("/addBoard.do", new AddBoardControl());   //실제 등록하기 
+		 // 등록양식 켜기 
+		map.put("/boardForm.do", new BoardFormControl()); 
+		//실제 등록하기 
+		map.put("/addBoard.do", new AddBoardControl());   
 		
-		map.put("/modifyForm.do", new ModifyFormControl());   //수정양식켜기 
-		map.put("/modifyBoard.do", new ModifyBoardControl());   //실제 수정하기 
 		
-		map.put("/removeForm.do", new RemoveFormControl());   //삭제 데이터 보여주기
-		map.put("/removeBoard.do", new RemoveBoardControl());   //실제 삭제하기 
+		 //수정양식켜기 
+		map.put("/modifyForm.do", new ModifyFormControl());  
+		//실제 수정하기 
+		map.put("/modifyBoard.do", new ModifyBoardControl());   
 		
-		//멤버리스트 전체호죄 
+		
+		//삭제 데이터 켜기
+		map.put("/removeForm.do", new RemoveFormControl());  
+		 //실제 삭제하기 
+		map.put("/removeBoard.do", new RemoveBoardControl());  
+		
+		//멤버리스트 전체조회
 		map.put("/memberList.do" , new MemberListControl());
 		
 		}
 	
-	//http://localhost:8080/helloJSP/boardList.do 이거 여기서 쳐야 나온대 
+	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {    //실제 실행됟는 서비스는 얘 
 		

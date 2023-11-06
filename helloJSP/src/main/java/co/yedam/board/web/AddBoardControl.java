@@ -17,6 +17,8 @@ public class AddBoardControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		//저장을 누르면  등록폼에 있던 정보들 불러옴 
+		
 		BoardVO vo = new BoardVO();
 
 		if (req.getMethod().equals("GET")) {
@@ -32,10 +34,11 @@ public class AddBoardControl implements Command {
 
 			// 얘는 등록추가하면 보여지는 페이지가 boardList거나 boardForm이 나오도록
 
-		} else if (req.getMethod().equals("POST")) { // 이미지 파일 업로드
+		} else if (req.getMethod().equals("POST")) { // 이미지 파일 업로드까지 할려면 
+			
 			String saveDir = req.getServletContext().getRealPath("images");
 			int size = 5 * 1024 * 1024;
-			// MultipartRequest mr;
+			
 			try {
 				MultipartRequest mr = new MultipartRequest(req, // 요청정보
 						saveDir, // 저장경로
@@ -43,18 +46,18 @@ public class AddBoardControl implements Command {
 						"UTF-8", // 인코딩방식
 						new DefaultFileRenamePolicy()// 리네임정책
 				);
-				String title = mr.getParameter("title");      //boardForm에서 보낸 값들을 읽어옴 
+				
+				String title = mr.getParameter("title");      //등록양식에 입력 한 값 ㄷㅔ려와서 
 				String writer = mr.getParameter("writer");
 				String content = mr.getParameter("content");
 				String img = mr.getFilesystemName("img");
 
-				vo.setTitle(title);
+				vo.setTitle(title);   
 				vo.setWriter(writer);
 				vo.setContent(content);
 				vo.setImage(img);
 				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -63,7 +66,7 @@ public class AddBoardControl implements Command {
 		BoardService svc = new BoardServiceImpl();
 		if (svc.addBoard(vo)) { // 잘 추가됐으면
 			try {
-				resp.sendRedirect("boardList.do"); // 글 저장후 목룍페이지로 이동하는경우, 특정처리후 지정한 페이지로 이동하고싶을때 사용하는
+				resp.sendRedirect("boardList.do"); // 글 저장후 목룍페이지로 이동하는경우, (특정처리후 지정한 페이지로 이동하고싶을때) 사용하는
 			} catch (IOException e) { // resp.sendRedirectresp , boardList.do가 실행되어 추가된 정보까지 나옴
 				e.printStackTrace();
 			}
@@ -74,8 +77,6 @@ public class AddBoardControl implements Command {
 				e.printStackTrace();
 			}
 		}
-
-			
 		
 	}// execute
 

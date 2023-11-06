@@ -19,23 +19,21 @@ public class ModifyBoardControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 
 		BoardVO vo ;
+		//실제 수정 이루어지는 
 		//modifyfrom에서 가져온 수정된 값으로 vo객체 만들기 
 		String bno = req.getParameter("bno");
 		//System.out.println("dddd" + bno);
 		String title = req.getParameter("title"); 
-		String writer = req.getParameter("writer");
 		String content = req.getParameter("content");
 
 		vo = new BoardVO(); 
 		vo.setBoardNo(Integer.parseInt(bno));
 		vo.setTitle(title);
-		vo.setWriter(writer);
 		vo.setContent(content);
 
 	
-
 		BoardService svc = new BoardServiceImpl();
-		if (svc.edietBoard(vo)) { // 수정된애 추가 하기 
+		if (svc.edietBoard(vo)) { // 수정된애로 업데이트 
 			try {
 				resp.sendRedirect("boardList.do");   //수정추가 완료되면 boardlist.do 보이게 
 			} catch (IOException e) { 

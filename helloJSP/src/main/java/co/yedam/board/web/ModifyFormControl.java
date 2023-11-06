@@ -15,9 +15,9 @@ public class ModifyFormControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		//수정화면오픈 
-		String bno = req.getParameter("bno");  //getBoard.jsp에서 받아온 bno 값으로 수정화면 오픈
-		//System.out.println("나와라나와라" + bno);  //나옴 
+		//수정폼오픈 
+		String bno = req.getParameter("bno");  //getBoard.jsp 조회화면 에서 받아온 bno 값
+		//System.out.println("나와라나와라" + bno);  
 		BoardService svc = new 	BoardServiceImpl();
 		BoardVO vo =  svc.getBoard(Integer.parseInt(bno));  // 조회된 수정대상 객체를 가져옴 
 		

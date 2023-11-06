@@ -36,7 +36,7 @@ public class BoardDAO {
 	}
 
 	// 전체조회
-	public List<BoardVO> selectList() {
+	public List<BoardVO> selectList() {  //	public List <BoardVO> boardList();   
 
 		sql = "select *from board";
 		conn = ds.getConnection();
@@ -71,7 +71,7 @@ public class BoardDAO {
 	}
 
 	// 한건조회
-	public BoardVO select(int boardNo) {
+	public BoardVO select(int boardNo) {  //public BoardVO getBoard(int boardNo);
 
 		String sql = "select *from board where board_no= ?";
 		conn = ds.getConnection();
@@ -105,9 +105,9 @@ public class BoardDAO {
 	}
 
 	// 추가
-	public int insert(BoardVO vo) {
+	public int insert(BoardVO vo) {  //public boolean addBoard(BoardVO vo);
 
-		String sql = "insert into board (board_no,title,content,writer, image)" + "values(seq_board.nextval,?,?,?,?)";
+		String sql = "insert into board (board_no,title,content,writer,image)" + "values(seq_board.nextval,?,?,?,?)";
 		conn = ds.getConnection(); // 연결
 
 		try {
@@ -128,7 +128,7 @@ public class BoardDAO {
 	}
 
 	// 수정
-	public int update(BoardVO vo) {
+	public int update(BoardVO vo) {  //public boolean edietBoard(BoardVO vo);
 
 		String sql = "update board set title = ?, content= ?, " + "image=nvl(?,image), last_update=sysdate "
 				+ "where board_no = ?";
@@ -155,7 +155,7 @@ public class BoardDAO {
 	}
 
 	// 삭제
-	public int delete(int boardNo) {
+	public int delete(int boardNo) {  //public boolean removeBoard(int boardNo);
 
 		String sql = "delete from board where board_no = ?";
 		conn = ds.getConnection();
@@ -193,7 +193,7 @@ public class BoardDAO {
 		return 0;
 	}
 
-	// 로그인 메소드 //아이디 비번 받아서 값이 있는지 없는지 체크 하래 
+	// 로그인 메소드 //아이디 비번 받아서 값이 있는지 없는지 체크 하래  //public MemberVO loginCheck(String id, String pw);
 	public MemberVO getUser(String id, String pw) {
 
 		sql = "select *from member where mid =? and pass =?";
@@ -227,8 +227,8 @@ public class BoardDAO {
 	
 
 	
-	
-	public List <MemberVO> memberList() {
+	//멤버 전체 조회    
+	public List <MemberVO> memberList() {  //public List <MemberVO> memberList();
 
 		sql = "select *from member";
 		conn = ds.getConnection();
@@ -259,15 +259,6 @@ public class BoardDAO {
 		return list;
 
 	}
-
-	
-
-	
-		
-
-	
-	
-	
 	
 	
 

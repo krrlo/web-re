@@ -13,10 +13,9 @@ public class LoginFormControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
 	
-		
-		
-		String path = "WEB-INF/main/loginForm.jsp";
 		//loginform.jsp 로그인 할수있는 페이지 열리도록 경로 재지정 
+		String path = "WEB-INF/main/loginForm.jsp";
+		
 		
 		
 		try {    //loginform.jsp 열어라 

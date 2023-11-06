@@ -20,15 +20,8 @@
 		
 		
 		<tr>
-			
-			<td colspan="2"><input type ="submit"  class="btn btn-primary" value="로그인"></td>  <!-- 버튼써라 -->
+			<td colspan="2"><input type ="submit" class="btn btn-primary" value="로그인"></td>  <!-- 버튼써라 -->
 		<tr>
 		
-		
-		
 	</table>
-
-
-
-
 </form>
