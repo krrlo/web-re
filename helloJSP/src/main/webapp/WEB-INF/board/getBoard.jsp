@@ -1,6 +1,15 @@
 <%@page import="co.yedam.board.service.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<style>
+#list span{
+
+margin: 8px;
+
+}
+</style>
+
 
 <%@include file = "../layout/menu.jsp" %>
 <%@include file = "../layout/header.jsp" %>
@@ -24,24 +33,24 @@
 	    <!-- 화면상에는 안보이게 , 값은 수정,삭제할때 넘겨줘야하니까 -->
 		<input type="hidden" name="bno" value="<%=vo.getBoardNo()%>">
 
-		<table border="1">
+		<table class="table">
 
 			<tr>
 				<th>글번호</th>
-				<td><%=vo.getBoardNo()%></td>
+				<td class="boardNo" class="form-control" ><%=vo.getBoardNo()%></td>
 				<th>작성일시</th>
-				<td><%=vo.getWriteDate()%></td>
+				<td><%=vo.getWriterDate()%></td>
 			</tr>
 
 
 			<tr>
 				<th>글제목</th>
-				<td colspan="3"><%=vo.getTitle()%></td>
+				<td colspan="3" class="form-control" ><%=vo.getTitle()%></td>
 			</tr>
 
 
 			<tr>
-				<td colspan="4"><textarea rows="5" cols="40"> <%=vo.getContent()%></textarea>
+				<td colspan="4"><textarea rows="5" cols="40" class="form-control" > <%=vo.getContent()%></textarea>
 				</td>
 			</tr>
 
@@ -84,6 +93,28 @@
 		</table>
 	</form>
 	
+	
+	
+<h3>댓글등록</h3>
+<table class = "table">
+	<tr>
+		<th>댓글내용</th>
+		<td><input type="text" id="content"></td>
+		<td><button id="addReply">댓글등록</button></td>
+ 	</tr>
+</table>	
+	
+	
+
+	
+	
+<h3>댓글목록</h3>
+<ul id ="list">
+	<li style ="display: none;" id ="template"><span>00</span><b>첫번째글인데요</b><span>user01</span><span>2023-10-10</span><button>삭제</button></li>
+	
+</ul>	
+	
+	
 	<p>
 		<a href="boardList.do">목록으로가기</a>
 	</p>
@@ -93,7 +124,66 @@
 		.addEventListener('click',function(e){
 			document.forms.myFrm.action = 'removeForm.do';
 			document.forms.myFrm.submit();
+		});
+	
+	
+	//한 게시글에 달린 댓글목록출력하기 
+	let bno = "<%=vo.getBoardNo()%>";
+	let writer = "<%=logId%>";
+	bno = document.querySelector('.boardNo').innerHTML;
+	fetch('replyList.do?bno='+bno)  //23번 게시물 
+	.then(resolve => resolve.json())
+	.then(result => {  //result에는 글 번호 23번에 달린 댓글 내용 리스트가 들어가있음 
+		console.log(result);
+		result.forEach(reply => { 
+			let li = makeRow(reply);   //화면에 그려주기 
+			//한건 데이터 만드는 함수 
+			document.querySelector('#list').append(li);   //ul태그에 만들어진 li붙힘 
 		})
+	})
+	.catch(err => console.log(err));
+	
+	
+	//댓글 등록버튼 이벤트 
+	document.querySelector('#addReply').addEventListener('click', function(e){
+			let reply = document.querySelector('#content').value;  //댓글내용 값 가져옴 
+			//아작스 bno/writer/reply를 서블릿으로 전달 
+			
+			if(!bno || writer =='null' || !reply ){
+				alert("로그인 하지 않았거나 작성되지 않은 항목이 있습니당")
+				return;   //함수를 중간에 종료하려면 
+			}
+			fetch('addReply.do',{
+				method:'post',
+				headers : {'Content-Type': 'application/x-www-form-urlencoded'},
+				body: 'bno=' +bno + '&reply=' + reply + '&replyer=' +writer
+			})
+			.then(resolve => resolve.json())
+			.then(result => {
+				if(result.code == 'ok'){
+					document.querySelector('#list').append(makeRow(result.vo));
+				}else{
+					alert('에러')
+				}
+			})
+	})//댓글등록 이벤트
+	
+	
+	
+	
+	function makeRow(reply){
+		
+		let temp = document.querySelector('#template').cloneNode(true);
+		temp.style.display ='block';
+		console.log(temp);
+		temp.querySelector('span:nth-of-type(1)').innerHTML = reply.replyNo;
+		temp.querySelector('b').innerHTML = reply.reply;
+		temp.querySelector('span:nth-of-type(2)').innerHTML = reply.replyer;
+		temp.querySelector('span:nth-of-type(3)').innerHTML = reply.replyDate;
+		return temp;
+		
+	}//makeRow 함수 
+			
 	</script>
 	
 <%@include file = "../layout/footer.jsp" %>

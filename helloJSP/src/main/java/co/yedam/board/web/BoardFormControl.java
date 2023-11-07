@@ -17,6 +17,7 @@ public class BoardFormControl implements Command {
 		//게시글 등록하기 화면 나오게 
 		HttpSession session = req.getSession();  //이거 여기 왜있지..?
 		
+		
 		// 로그인 안했으면 등록화면 못가게 , 로그인 정보가 없으면 로그인 화면으로 가게하고
 		if (session.getAttribute("logId") == null) {
 			try {
@@ -33,3 +34,4 @@ public class BoardFormControl implements Command {
 		}
 	}//execute
 }
+

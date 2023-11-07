@@ -17,7 +17,7 @@
 		<table class = "table">
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title"></td>
+				<td><input type="text" class="form-control" name="title"></td>
 			</tr>
 
 			<tr>
@@ -26,13 +26,13 @@
 			</tr>
 
 			<tr>
-				<td colspan="2"><textarea cols="40" row="5" name="content"></textarea></td>
+				<td colspan="2"><textarea cols = "50" rows= "7" class="form-control" name="content"></textarea></td>
 
 			</tr>
 
 			<tr>
 				<th>파일명</th>
-				<td><input type="file" name="img"></td>
+				<td><input type="file" class="form-control" name="img"></td>
 			</tr>
 
 			<tr>
