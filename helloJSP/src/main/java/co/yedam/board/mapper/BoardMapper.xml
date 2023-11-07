@@ -2,9 +2,9 @@
 <!DOCTYPE mapper SYSTEM "path/mybatis-3-mapper.dtd">
   
   
-<mapper namespace="co.yedam.board.mapper.BoardMapper">
+<mapper namespace="co.yedam.board.mapper.BoardMapper"> <!-- 변경하기  -->
 	<select id="selectList" resultType="co.yedam.board.service.BoardVO">     <!-- 함수이름, 리턴타입  인터페이스는 boardMapper / 얘가 구현객체임 -->
-		select *from board   <!-- 쿼리 날리기  -->
+		select *from board   
 	</select>
 	
 	

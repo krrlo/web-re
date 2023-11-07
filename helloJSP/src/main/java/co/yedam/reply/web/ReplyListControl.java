@@ -24,19 +24,17 @@ public class ReplyListControl implements Command {
 		ReplyService svc = new ReplyServiceImpl();
 		List <ReplyVO> list = svc.replyList(Integer.parseInt(bno));  //보드 넘버가 23인 애들의 댓글 목록 가져옴 
 		
-		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		
 		String json = gson.toJson(list);
+		
 		resp.setContentType("text/json;charset=utf-8");
+		
 		try {
 			resp.getWriter().print(json);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 
 	}
 

@@ -20,7 +20,7 @@ public class AddReplyControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		//댓글창에 입력한 내용 파라미터로 받아오기	
+		//내가 댓글 등록한 페이지의 bno와, 작성자, 댓글내용을 가져옴 
 		
 		String bno = req.getParameter("bno");
 		String reply = req.getParameter("reply");
@@ -36,6 +36,7 @@ public class AddReplyControl implements Command {
 		vo.setReplyDate(new Date());
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		
 		Map<String, Object> map = new HashMap<>();
 		
 		if(svc.addReply(vo)) {
@@ -46,10 +47,10 @@ public class AddReplyControl implements Command {
 		}
 
 		resp.setContentType("text/json;charset=utf-8");
+		
 		try {
-			resp.getWriter().print(gson.toJson(map));
+			resp.getWriter().print(gson.toJson(map));  //얘가 출력되는거 
 		} catch (IOException e) {
-			
 			e.printStackTrace();
 		}
 		

@@ -18,6 +18,7 @@ import co.yedam.board.web.ModifyFormControl;
 import co.yedam.board.web.RemoveBoardControl;
 import co.yedam.board.web.RemoveFormControl;
 import co.yedam.reply.web.AddReplyControl;
+import co.yedam.reply.web.DelReplyControl;
 import co.yedam.reply.web.ReplyListControl;
 import co.yedam.board.web.AddBoardControl;
 
@@ -57,7 +58,7 @@ public class FrontController extends HttpServlet {
 		map.put("/modifyBoard.do", new ModifyBoardControl());   
 		
 		
-		//삭제 데이터 켜기
+		//삭제 양식 켜기
 		map.put("/removeForm.do", new RemoveFormControl());  
 		 //실제 삭제하기 
 		map.put("/removeBoard.do", new RemoveBoardControl());  
@@ -70,6 +71,8 @@ public class FrontController extends HttpServlet {
 		map.put("/replyList.do", new ReplyListControl());
 		//댓글등록
 		map.put("/addReply.do", new AddReplyControl());
+		//댓글삭제 
+		map.put("/delReply.do" , new DelReplyControl());
 		
 		}
 	
@@ -87,7 +90,7 @@ public class FrontController extends HttpServlet {
 		String context = req.getServletContext().getContextPath();
 		//>>/helloJSP
 		String page = uri.substring(context.length());  //uri주소값에서 
-		System.out.println("실행된페이지는 "+ page);  // /boardList.do 가 들어있음 
+		System.out.println("실행된주소는 "+ page);  // /boardList.do 가 들어있음 
 		Command controller = map.get(page);	//ex) page에 boardList.do가 들어가있으면 new BoardListControl()가 실행되어 목록이 나오게됨 
 		//Command controller = new BoardListControl(); 
 		//인터페이스에 = 구현객체를 대입  구현객체에는 execute함수가 정의되어있음  

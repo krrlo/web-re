@@ -5,9 +5,20 @@
 <style>
 #list span{
 
-margin: 8px;
+margin: 20px;
+margin-bottom : 10px;
+text-align: left;    
 
 }
+
+
+#template {
+margin: 10px;
+margin-bottom : 10px;
+text-align: left;  
+}
+
+
 </style>
 
 
@@ -99,21 +110,28 @@ margin: 8px;
 <table class = "table">
 	<tr>
 		<th>댓글내용</th>
-		<td><input type="text" id="content"></td>
-		<td><button id="addReply">댓글등록</button></td>
+		<td><input type="text" class="form-control" id="content"></td>
+		<td><button id="addReply" class="btn btn-primary">댓글등록</button></td>
  	</tr>
 </table>	
 	
 	
 
-	
+
 	
 <h3>댓글목록</h3>
+
 <ul id ="list">
-	<li style ="display: none;" id ="template"><span>00</span><b>첫번째글인데요</b><span>user01</span><span>2023-10-10</span><button>삭제</button></li>
-	
+	<li style ="display: none;" id ="template"> 
+	<span>00</span>   <!-- replyno -->
+	<b>첫번째댓글인데요</b>   <!-- reply -->
+	<span>user01</span>  <!-- replyer -->
+	<span>2023-10-10</span> <!-- replyDate -->
+	<button id = "delReply" class="btn btn-warning">삭제</button>
+	<hr>
+	</li>
 </ul>	
-	
+
 	
 	<p>
 		<a href="boardList.do">목록으로가기</a>
@@ -128,10 +146,10 @@ margin: 8px;
 	
 	
 	//한 게시글에 달린 댓글목록출력하기 
-	let bno = "<%=vo.getBoardNo()%>";
-	let writer = "<%=logId%>";
-	bno = document.querySelector('.boardNo').innerHTML;
-	fetch('replyList.do?bno='+bno)  //23번 게시물 
+	let bno = "<%=vo.getBoardNo()%>";  
+	let writer = "<%=logId%>";   
+	//bno = document.querySelector('.boardNo').innerHTML;  //클래스 이름이 boardNo인 태그의 innerHTML
+	fetch('replyList.do?bno='+bno) //23번 게시물의..?
 	.then(resolve => resolve.json())
 	.then(result => {  //result에는 글 번호 23번에 달린 댓글 내용 리스트가 들어가있음 
 		console.log(result);
@@ -144,6 +162,7 @@ margin: 8px;
 	.catch(err => console.log(err));
 	
 	
+	
 	//댓글 등록버튼 이벤트 
 	document.querySelector('#addReply').addEventListener('click', function(e){
 			let reply = document.querySelector('#content').value;  //댓글내용 값 가져옴 
@@ -153,6 +172,7 @@ margin: 8px;
 				alert("로그인 하지 않았거나 작성되지 않은 항목이 있습니당")
 				return;   //함수를 중간에 종료하려면 
 			}
+			
 			fetch('addReply.do',{
 				method:'post',
 				headers : {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -160,8 +180,9 @@ margin: 8px;
 			})
 			.then(resolve => resolve.json())
 			.then(result => {
+				console.log(result);
 				if(result.code == 'ok'){
-					document.querySelector('#list').append(makeRow(result.vo));
+					document.querySelector('#list').append(makeRow(result.vo)); //새로추가한 내용을 ul태그 밑에 붙힘 
 				}else{
 					alert('에러')
 				}
@@ -169,19 +190,33 @@ margin: 8px;
 	})//댓글등록 이벤트
 	
 	
+
 	
-	
+	//result안에들어있는 댓글 객체 1행씩 li템플릿 형식으로 변경 
 	function makeRow(reply){
 		
 		let temp = document.querySelector('#template').cloneNode(true);
 		temp.style.display ='block';
-		console.log(temp);
-		temp.querySelector('span:nth-of-type(1)').innerHTML = reply.replyNo;
-		temp.querySelector('b').innerHTML = reply.reply;
-		temp.querySelector('span:nth-of-type(2)').innerHTML = reply.replyer;
-		temp.querySelector('span:nth-of-type(3)').innerHTML = reply.replyDate;
-		return temp;
+		temp.querySelector('span:nth-of-type(1)').innerHTML = reply.replyNo; //첫번째 스판태그의 내용에 
+		temp.querySelector('b').innerHTML = reply.reply;   //b태그에 
+		temp.querySelector('span:nth-of-type(2)').innerHTML = reply.replyer;  //두번째 스판태그에 
+		temp.querySelector('span:nth-of-type(3)').innerHTML = reply.replyDate;  //세번째 스판태그에 
 		
+		temp.querySelector('#delReply').addEventListener('click' , function(e){ 
+			fetch('delReply.do?rno=' + reply.replyNo)
+			.then(resolve => resolve.json())
+			.then(result => {
+				console.log(result);
+				if(result.retCode == 'OK'){
+					alert('삭제성공');
+					temp.remove();
+				}else {
+					alert('삭제실패');
+				}
+			})
+			
+		})//이벤트 
+		return temp;
 	}//makeRow 함수 
 			
 	</script>
