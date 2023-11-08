@@ -4,7 +4,16 @@
 
 	<!-- 보드에 등록된 댓글들 조회  -->
 	<select id="replyList" resultType="co.yedam.reply.service.ReplyVO">     <!-- 함수이름, 리턴타입  인터페이스는 boardMapper / 얘가 구현객체임 -->
-		select *from reply where board_no=#{boardNo}
+		<![CDATA[
+		select *
+		from(
+		select /*+INDEX(r reply_pk)*/ rownum rn,r.*
+		from reply r
+		where r.board_no= #{boardNo}
+		) a
+		where a.rn > (#{page}-1) *5    
+		and a.rn <= (#{page})*5
+		]]>
 	</select>
 	
 	
@@ -35,6 +44,18 @@
 		delete from reply where reply_no = #{replyNo} 
 	</delete>
 
+	<select id ="getTotalCnt" resultType= "int">
+	select count(*) from reply where board_no =#{boardNo}
+	</select>
+	
+	
+	<select id ="getReplyCountBywriter" resultType= "map">
+	select  replyer, count(*) cnt
+	from reply
+	group by replyer
+	</select>
+	
+	
 	
 
 </mapper>

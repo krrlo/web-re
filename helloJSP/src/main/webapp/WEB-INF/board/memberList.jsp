@@ -2,39 +2,39 @@
 <%@page import="co.yedam.board.service.BoardVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+	pageEncoding="UTF-8"%>
 
 
-<%@include file = "../layout/menu.jsp" %>
-<%@include file = "../layout/header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- 자바코드 쓰게하려고  -->
 
-	<h3>회원 전체조회</h3>
-
-	<%
-	List <MemberVO> list = (List<MemberVO>) request.getAttribute("list"); //list라는 어트리뷰트를 읽어오세요.. 리스트 컬렉션. 전체조회 데이터가 들어와있음 //얘 반환값은 오브젝트 타입에 담김
-	%>
+<%@include file="../layout/menu.jsp"%>
+<%@include file="../layout/header.jsp"%>
 
 
-	<table class="table">
- 	<thead>
- 	<tr>
- 	<th>아이디</th>
- 	<th>이름</th>
- 	<th>연락처</th>
- 	<tbody>
- 	
- 	<% 
- 	for (MemberVO vo : list){ %>
- 		<tr>
- 		<td><%=vo.getMid()%></td>
- 		<td><%=vo.getName()%></a></td>
- 		<td><%=vo.getPhone()%></td>
- 		</tr>
- 	<%
- 	}
- 	%>  
- 	</tbody>
- 	</table>
 
-<%@include file="../layout/footer.jsp" %>
+<h3>회원 전체조회</h3>
+
+
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>아이디</th>
+			<th>이름</th>
+			<th>연락처</th>
+	</thead>
+	<tbody>
+		<c:forEach items="${list }" var="member">
+			<tr>
+				<td>${member.mid }</td>
+				<td>${member.name }</td>
+				<td>${member.phone }</td>
+				<!-- 클래스 이름과 똑같이 -->
+			</tr>
+
+		</c:forEach>
+	</tbody>
+</table>
+
+<%@include file="../layout/footer.jsp"%>

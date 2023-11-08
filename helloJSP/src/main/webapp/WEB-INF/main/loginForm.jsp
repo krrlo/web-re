@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@include file="../layout/menu.jsp"%>
-<%@include file="../layout/header.jsp"%>
+ <jsp:include page="../layout/menu.jsp"></jsp:include>
+ <jsp:include page="../layout/header.jsp"></jsp:include>   <!-- 변경한거  -->
+
+
 
 <!-- 로그인 페이지 화면 나오게 ,  아이디 패스워드 입력받아서 login.do로 보내라  -->
 <form action="login.do" method="post">
@@ -25,3 +27,6 @@
 		
 	</table>
 </form>
+
+ <jsp:include page="../layout/footer.jsp"></jsp:include>
+    

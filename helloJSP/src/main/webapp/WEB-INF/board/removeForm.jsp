@@ -3,39 +3,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@include file = "../layout/menu.jsp" %>
-<%@include file = "../layout/header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<%
-	BoardVO vo = (BoardVO) request.getAttribute("vo");
-   //서블릿에서 받아온 삭제 대상 vo  그 vo로 밑에 목록 세팅 
-%>
+<jsp:include page="../layout/menu.jsp"></jsp:include>
+<jsp:include page="../layout/header.jsp"></jsp:include>
+
+
 
 <h3>게시글삭제화면</h3>
 
 	<form action="removeBoard.do" method="POST">  <!-- 삭제버튼누르면 삭제진행 --> 
 	<!-- 삭제버튼  submit되면 bno 넘겨서 삭제처리해야하니까  -->
-		<input type ="hidden" name="bno" value="<%=vo.getBoardNo()%>">
+		<input type ="hidden" name="bno" value="${vo.boardNo }">
 
 		<table class="table">
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title" class="form-control" value="<%=vo.getTitle()%>"></td>
+				<td><input type="text" name="title" class="form-control" value="${vo.title }"></td>
 			</tr>
 
 			<tr>
 				<th>작성자</th>
-				<td><input type="text" name="writer"   class="form-control" value="<%=vo.getWriter()%>"></td>
+				<td><input type="text" name="writer"   class="form-control" value="${vo.writer }"></td>
 			</tr>
 
 			<tr>
-				<td colspan="2"><textarea cols="40" row="5"  class="form-control" name="content"><%=vo.getContent()%></textarea></td>
+				<td colspan="2"><textarea cols="40" row="5"  class="form-control" name="content">${vo.content }</textarea></td>
 
 			</tr>
 
 			<tr>
 				<th>파일명</th>
-				<td><img src = "imangs/<%=vo.getImage() %>"  class="form-control" width="80px">
+				<td><img src = "imangs/${vo.image }" class="form-control" width="80px">
 			</tr>
 
 			<tr>

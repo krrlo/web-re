@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-    
-<%@include file = "../layout/menu.jsp" %>
-<%@include file = "../layout/header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<jsp:include page="../layout/menu.jsp"></jsp:include>
+<jsp:include page="../layout/header.jsp"></jsp:include>
 
 
 	
@@ -22,7 +23,7 @@
 
 			<tr>
 				<th>작성자</th>
-				<td><input type="text" readonly class="form-control" name="writer" value="<%=logId%>"></td>
+				<td><input type="text" readonly class="form-control" name="writer" value="${logId }>"></td>
 			</tr>
 
 			<tr>
@@ -45,5 +46,4 @@
 			<a href="boardList.do">뒤로가기</a>
 	</form>
 	
-<%@include file = "../layout/footer.jsp" %>
-
+	<jsp:include page="../layout/footer.jsp"></jsp:include>
