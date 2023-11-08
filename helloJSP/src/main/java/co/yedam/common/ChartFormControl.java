@@ -17,7 +17,6 @@ public class ChartFormControl implements Command {
 			.forward(req,resp);
 		
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();     
 		}
 		

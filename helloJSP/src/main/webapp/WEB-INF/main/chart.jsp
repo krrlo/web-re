@@ -15,7 +15,7 @@
 			console.log(result);
 			let dataAry =[['Writer' , 'Cnt']];
 			result.forEach(item =>{
-				dataAry.push([item.REPLYER, item.CNT])
+				dataAry.push([item.REPLYER, item.CNT])  ///이해안됨
 			})
 			console.log(dataAry);
 			var data = google.visualization.arrayToDataTable(dataAry);  //넣어줬더니만 알아서 차트 그려줌 

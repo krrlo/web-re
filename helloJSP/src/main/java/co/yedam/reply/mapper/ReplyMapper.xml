@@ -2,7 +2,7 @@
 <!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
 <mapper namespace="co.yedam.reply.mapper.ReplyMapper">
 
-	<!-- 보드에 등록된 댓글들 조회  -->
+	<!-- 보드에 등록된 댓글들 조회 하는데 (몇번게시글)의 (몇페이지댓글)을 보여줄건지   -->
 	<select id="replyList" resultType="co.yedam.reply.service.ReplyVO">     <!-- 함수이름, 리턴타입  인터페이스는 boardMapper / 얘가 구현객체임 -->
 		<![CDATA[
 		select *
@@ -43,18 +43,18 @@
 	<delete id ="deleteReply" parameterType ="int">
 		delete from reply where reply_no = #{replyNo} 
 	</delete>
-
+	
+	<!-- 한 개시글에 달린 댓글 건수 조회  -->
 	<select id ="getTotalCnt" resultType= "int">
 	select count(*) from reply where board_no =#{boardNo}
 	</select>
 	
-	
+	<!-- 작성자가 댓글 몇개 작성했는지  -->
 	<select id ="getReplyCountBywriter" resultType= "map">
 	select  replyer, count(*) cnt
 	from reply
 	group by replyer
 	</select>
-	
 	
 	
 

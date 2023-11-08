@@ -7,7 +7,7 @@
 
 
 <div class="container px-4 px-lg-5">
-		<p class="m-0 text-center">첫페이지입니다!!</p>
+		<p class="m-0 text-center">두웅이의 첫페이지</p>
 			
 	</div>
 

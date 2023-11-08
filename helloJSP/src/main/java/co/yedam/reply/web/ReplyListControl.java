@@ -22,25 +22,25 @@ public class ReplyListControl implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		//23번 게시글에 달린 댓글 가져오기 
-		String bno = req.getParameter("bno");
-		String page = req.getParameter("page");
+		String bno = req.getParameter("bno");  //게시글 번호 
+		String page = req.getParameter("page");  //몇번째 페이지 댓글 
 		
 		
 		
 		ReplyService svc = new ReplyServiceImpl();
-		page = page ==null? "1" :page;  //page값이 안넘어오면 1페이지 보여주게 
+		page = page == null ? "1" : page;  //page값이 안넘어오면 1페이지 보여주게 
 		
-		//페이지 계산하기 
-		
-		pageDTO dto = new pageDTO(Integer.parseInt(bno),svc.getTotalCnt(Integer.parseInt(bno)),Integer.parseInt(page));  //내 건수에 맞게 고쳐라 
-		
-		
-		
-	
-		List <ReplyVO> list = svc.replyList(Integer.parseInt(bno),Integer.parseInt(page));  //게시판번호/ 몇페이지 나오게할지 
+		//페이지 계산해서 버튼을 그려주는 역할 
+		//게시글 번호 / 댓글 건수 / 현재페이지
+		pageDTO dto = new pageDTO(Integer.parseInt(bno),svc.getTotalCnt(Integer.parseInt(bno)),Integer.parseInt(page)); 
+		//{"total":55,"currentPage":1,"next":true,"prev":false,"startPage":1,"endPage":10,"boardNo":1}}
 		
 		
-		//list, dto 둘다 넘기기 
+		 //게시판번호/ 몇페이지 나오게할지
+		List <ReplyVO> list = svc.replyList(Integer.parseInt(bno),Integer.parseInt(page));  
+		
+		
+		//list, dto  getboard jsp로 둘다 넘기기 
 		
 		Map<String , Object> map = new HashMap<>();
 		map.put("list" , list); //댓글리스트 넘기고 

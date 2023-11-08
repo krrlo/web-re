@@ -15,7 +15,8 @@ public interface ReplyMapper {
 	public int insertReply(ReplyVO vo); //등록
 	public int updateReply(ReplyVO vo);  //수정
 	public int deleteReply(int replyNo); //삭제
-	public int getTotalCnt (int boardNo);
+	
+	public int getTotalCnt (int boardNo); // 게시글에 달린 댓글 갯수 
 	
 	
 	public List <Map <String , Object>> getReplyCountBywriter();
