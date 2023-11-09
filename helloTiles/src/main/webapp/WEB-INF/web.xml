@@ -24,7 +24,7 @@
 	
 	
 
-	<servlet>   <!-- tiles.xml을 실행시킴  -->
+	<servlet>   <!-- 주소에 tiles로 끝나는 애가 들어오면 tiles.xml을 실행시킴  -->
 		<servlet-name>Tiles Dispatch Servlet</servlet-name>
 		<servlet-class>org.apache.tiles.web.util.TilesDispatchServlet</servlet-class>
 	</servlet>

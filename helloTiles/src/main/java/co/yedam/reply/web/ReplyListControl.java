@@ -23,7 +23,7 @@ public class ReplyListControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		//23번 게시글에 달린 댓글 가져오기 
 		
-		String path = "board/getBoard.tiles";
+		
 		String bno = req.getParameter("bno");  //게시글 번호 
 		String page = req.getParameter("page");  //몇번째 페이지 댓글 
 		

@@ -9,6 +9,6 @@
 
 
 <body>
-<a href="myapp.homepage.tiles">타일즈로이동</a>
+
 </body>
 </html>
