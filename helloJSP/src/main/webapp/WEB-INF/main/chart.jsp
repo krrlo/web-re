@@ -9,13 +9,13 @@
 	google.charts.setOnLoadCallback(drawChart);
 	
 	function drawChart() {
-		fetch('drawChart.do')
-		.then(resolve => resolve.json())
+		fetch('drawChart.do')  //여기서 데이터 가져옴 
+		.then(resolve => resolve.json())  //자바 객체타입으로 변경 
 		.then(result => {
-			console.log(result);
-			let dataAry =[['Writer' , 'Cnt']];
-			result.forEach(item =>{
-				dataAry.push([item.REPLYER, item.CNT])  ///이해안됨
+			console.log(result);  // 객체타입으로 나옴 
+			let dataAry =[['Writer' , 'Cnt']];  //다시 배열타입으로 변경 
+			result.forEach(item => {
+				dataAry.push([item.replyer, item.cnt])  ///배열 타입으로 변경
 			})
 			console.log(dataAry);
 			var data = google.visualization.arrayToDataTable(dataAry);  //넣어줬더니만 알아서 차트 그려줌 

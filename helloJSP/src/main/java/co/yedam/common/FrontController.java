@@ -75,8 +75,8 @@ public class FrontController extends HttpServlet {
 		map.put("/delReply.do" , new DelReplyControl());
 		
 		//차트그리기 
-		map.put("/chartForm.do" , new ChartFormControl());  //chart.jsp로 경로재지정 //차트가 나오는 곳 
-		map.put("/drawChart.do" , new DrawChartControl());
+		map.put("/chartForm.do" , new ChartFormControl());  //chart.jsp로 경로재지정 //차트가 나오는 곳  
+		map.put("/drawChart.do" , new DrawChartControl());   //db에서 데이터를 가져옴 
 		}
 	
 	

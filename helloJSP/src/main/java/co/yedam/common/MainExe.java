@@ -21,7 +21,7 @@ public class MainExe {
 		
 		List <ReplyVO> list = mapper.replyList(23,1); //게시글 번호 , 페이지 숫자 
 		
-		list.forEach(vo -> System.out.println(vo));
+		//list.forEach(vo -> System.out.println(vo));
 		
 		
 		List<Map <String, Object>> map = mapper.getReplyCountBywriter();

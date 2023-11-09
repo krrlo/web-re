@@ -22,7 +22,7 @@ public class DrawChartControl implements Command {
 		// json 데이터 => [작성자, 건수] 받아와서 자바스크립트 페이지에서 그려주기
 
 		ReplyService svc = new ReplyServiceImpl();
-		List <Map<String, Object>> list = svc.getReplyCountBywriter();
+		List <Map<String, Object>> list = svc.getReplyCountBywriter();  //사용자별 댓글단 건수 데이터를 가져와서 list에 넣음 
 
 		Gson gson = new GsonBuilder().create();
 		

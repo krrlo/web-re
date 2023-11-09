@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="co.yedam.board.mapper.BoardMapper"> <!-- 변경하기  -->
+	<select id="selectList" resultType="co.yedam.board.service.BoardVO">     <!-- 함수이름, 리턴타입  인터페이스는 boardMapper / 얘가 구현객체임 -->
+		select *from board   
+	</select>
+	
+	
+	<select id = "select"  resultType="co.yedam.board.service.BoardVO" parameterType ="int">
+		select *from board where board_no=#{boardNo} <!-- 파라메타타입  (int boardNo) -->
+	</select>
+	
+	<!--int 타입은 resultType 지정 안해도됨-->
+	
+	<update id = "updateCnt" parameterType ="int">
+		update board set view_cnt = view_cnt +1 where board_no=#{boardNo} 
+	</update>
+	
+	<insert id = "insert" parameterType ="co.yedam.board.service.BoardVO">
+		insert into board (board_no,title,content,writer,image) 
+		values(seq_board.nextval,#{title},#{content},#{writer},#{image})
+	</insert >
+	
+	
+	<update id = "update" parameterType ="co.yedam.board.service.BoardVO">
+		update board set title = #{title} , content= #{content},  
+	  	image=nvl(#{image},image), last_update=sysdate 
+			 where board_no =#{boardNo} 
+	</update>
+	
+	
+	<delete id = "delete" parameterType ="int">
+		delete from board where board_no = #{boardNo} 
+	</delete>
+	
+	
+	<!-- 파라미터가 2개인 경우에는 인터페이스에 @Param을 사용  -->
+	<select id = "getUser" resultType ="co.yedam.board.service.MemberVO" >
+		select *from member where mid =#{id} and pass =#{pw}
+	</select>
+	
+	
+	<select id="memberList" resultType="co.yedam.board.service.MemberVO">    
+		select *from member 
+	</select>
+	
+	
+	
+</mapper>

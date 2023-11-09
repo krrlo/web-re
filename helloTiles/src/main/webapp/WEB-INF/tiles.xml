@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions SYSTEM "path/tiles-config_3_0.dtd">
+       
+<tiles-definitions>
+ 
+ 
+  <definition name="boardpage" template="/WEB-INF/layouts/template.jsp">
+    <put-attribute name="title" value="게시판 템플릿" />
+    <put-attribute name="header" value="/WEB-INF/layouts/header.jsp" />
+    <put-attribute name="menu" value="/WEB-INF/layouts/menu.jsp" />
+    <put-attribute name="body" value="/WEB-INF/layouts/body.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
+  </definition>
+  
+  
+  
+    <definition name ="WILDCARD:board/*" extends="boardpage">          
+    	<put-attribute name="body" value="/WEB-INF/board/{1}.jsp" /> 	
+    	<!-- http//localhost:8080/helloTiles/member/member1.tiles   //WILDCARD:폴더이름/jsp파일 이름-->	   
+    	<!-- http://localhost:8080/helloTiles/boardList.do(board/boardList.tiles)-->															
+  	</definition>
+  
+  
+  
+  
+  <definition name="adminpage" template="/WEB-INF/layouts/admintemplate.jsp">
+    <put-attribute name="title" value="관리자 템플릿" />
+    <put-attribute name="header" value="/WEB-INF/layouts/admheader.jsp" />
+    <put-attribute name="menu" value="/WEB-INF/layouts/admmenu.jsp" />
+    <put-attribute name="body" value="/WEB-INF/layouts/admbody.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/layouts/admfooter.jsp" />
+  </definition>
+  
+  
+  
+    <definition name ="WILDCARD:admin/*" extends="adminpage">           
+    	<put-attribute name="body" value="/WEB-INF/admin/{1}.jsp" /> 		   
+  	</definition>
+  
+  
+  
+  
+  
+  
+  <!-- 어드민도 아니고 보드도 아니면..member/memberList.tiles를 호출하면 멤버 템플릿은 안정했으니까 board스타일이 적용됨-->
+   <definition name ="WILDCARD:*/*" extends="boardpage">           
+    	<put-attribute name="body" value="/WEB-INF/{1}/{2}.jsp" /> 		   
+  	</definition>
+  
+  
+</tiles-definitions>
