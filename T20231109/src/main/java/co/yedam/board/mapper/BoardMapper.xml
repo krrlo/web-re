@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="co.yedam.board.mapper.BoardMapper"> 
+	<select id="selectList" resultType="co.yedam.board.service.BoardVO">     
+		select *from tbl_product
+	</select>
+	
+	
+	<select id = "select"  resultType="co.yedam.board.service.BoardVO" parameterType ="string">
+		select *from tbl_product where prod_code =#{prodCode} 
+	</select>
+	
+	
+	
+</mapper>
