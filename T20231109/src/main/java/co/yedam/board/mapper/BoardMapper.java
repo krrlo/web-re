@@ -11,7 +11,7 @@ public interface BoardMapper {
 	
 	public List <BoardVO> selectList();
 	public BoardVO select (String prodCode);
-	
+	public List <BoardVO> relatedList();
 	
 }
 

@@ -3,49 +3,59 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
 
-<!--${list } 목록이담겨있음 -->
+<section class="py-5">
+	<div class="container px-4 px-lg-5 mt-5">
+		<div
+			class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<c:forEach items="${list }" var="product">
+				<!-- 상품목록 -->
+				<div class="col mb-5">
+					<div class="card h-100">
+						<!-- Sale badge-->
+						<div class="badge bg-dark text-white position-absolute"
+							style="top: 0.5rem; right: 0.5rem">Sale</div>
+						<!-- Product image-->
+						<img class="card-img-top" src="resources/images/${product.prodImage }" alt="..." />
+						<!-- Product details-->
+						<div class="card-body p-4">
+							<div class="text-center">
+								<!-- Product name-->
+								<h5 class="fw-bolder"><a href="productInfo.do?bno=${product.prodCode}">${product.prodName}</a></h5>
+								<!-- Product reviews-->
+								<div
+									class="d-flex justify-content-center small text-warning mb-2">
+									<c:forEach var="star" begin="1" end="5" step="1">
+										<c:choose>
+											<c:when test="${product.likeIt >=star }">
+												 <div class="bi-star-fill"></div>
+											</c:when>
+											<c:otherwise>
+											 	<div class="bi"></div>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</div>
+								<!-- Product price-->
+								<span class="text-muted text-decoration-line-through">${product.price }원</span>
+								${product.offPrice }원
+							</div>
+						</div>
+						<!-- Product actions-->
+						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+							<div class="text-center">
+								<a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+</section>
 
 
 
-
-
-
-
-
-
-
-
-<h3>게시판 목록</h3>
-
-<table class="table">
-	<thead>
-		<tr>
-			<th>제품번호</th>
-			<th>상품이름</th>
-			<th>원래가격</th>
-			<th>할인가격</th>
-			<th>평점</th>
-			<th>이미지</th>
-	<tbody>
-		<c:forEach items="${list }" var="vo">
-
-			<tr>
-				<td>${vo.prodCode }</td>
-				<td><a href="getBoard.do?bno=${vo.prodCode }">${vo.prodName }</a></td>
-				<td>${vo.price }</td>
-				<td>${vo.offPrice }</td>
-				<td>${vo.likeIt }</td>
-				<td><img width="180px" src="resources/images/${vo.prodImage }"></td>
-			</tr>
-		</c:forEach>
-	</tbody>
-</table>
-<p>
-
-	
-
-	

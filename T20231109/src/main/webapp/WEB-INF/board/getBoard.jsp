@@ -8,77 +8,85 @@
 
 
 
-<style>
-#list span {
-	margin: 20px;
-	margin-bottom: 10px;
-	text-align: left;
-}
 
-#template {
-	margin: 10px;
-	margin-bottom: 10px;
-	text-align: left;
-}
-
-.pagination {
-	display: inline-block;
-}
-
-.pagination a {
-	color: black;
-	float: left;
-	padding: 8px 16px;
-	text-decoration: none;
-}
-
-.pagination a.active {
-	background-color: #4CAF50;
-	color: white;
-}
-
-.pagination a:hover:not(.active) {
-	background-color: #ddd;
-}
-</style>
+<!-- ${bno } -->
+<!-- ${rlist } -->
 
 
 
-<!--req.setAttribute("bno", vo) bno 에는 vo 객체가 담겨있음  ${bno } -->
+<section class="py-5">
+	<div class="container px-4 px-lg-5 my-5">
+		<div class="row gx-4 gx-lg-5 align-items-center">
+			<div class="col-md-6">
+				<img class="card-img-top mb-5 mb-md-0"
+					src="resources/images/${bno.prodImage }" alt="..." />
+			</div>
+			<div class="col-md-6">
+				<div class="small mb-1">${bno.prodCode }</div>
+				<h1 class="display-5 fw-bolder">${bno.prodName }</h1>
+				<div class="fs-5 mb-5">
+					<span class="text-decoration-line-through">${bno.price }원</span> <span>${bno.offPrice }원</span>
+				</div>
+				<p class="lead"></p>
+				<div class="d-flex">
+					<input class="form-control text-center me-3" id="inputQuantity"
+						type="num" value="1" style="max-width: 3rem" />
+					<button class="btn btn-outline-dark flex-shrink-0" type="button">
+						<i class="bi-cart-fill me-1"></i> Add to cart
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-
-<h3>상세화면</h3>
-
-	<!-- 수정,삭제 버튼누르면 여기 값이 넘어감 -->
-
-	<!-- 화면상에는 안보이게 , 값은 수정,삭제할때 넘겨줘야하니까 -->
-	
-
-	<table class="table">
-
-		<tr>
-			<th>상품코드</th>
-			<td class="boardNo" class="form-control">${bno.prodCode }</td>
-			<th>상품이름</th>
-			<td class="boardNo" class="form-control">${bno.prodName }</td>
-			<th>상품설명</th>
-			<td class="boardNo" class="form-control">${bno.prodDesc }</td>
-			<th>상품원래가격</th>
-		    <td class="boardNo" class="form-control">${bno.price }</td>
-		    <th>할인된가격</th>
-		    <td class="boardNo" class="form-control">${bno.offPrice }</td>
-		    <th>평점</th>
-		    <td class="boardNo" class="form-control">${bno.likeIt }</td>
-			<tr>
-			<th>이미지</th>
-			<!-- 이미지가 들어있으면 그 이미지를 보여주고 없으면 엑박안뜨게  -->
-			<td colspan="3"><c:if test="${!empty bno.prodImage }"><img width="180px" src="resources/images/${bno.prodImage }"></c:if>	</td>
-			</tr>
-	</table>
-
-
-<p>
-	<a href="boardList.do">목록으로가기</a>
-</p>
-
-
+<section class="py-5 bg-light">
+	<div class="container px-4 px-lg-5 mt-5">
+		<h2 class="fw-bolder mb-4">Related products</h2>
+		<div
+			class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<c:forEach items="${rlist }" var="product">
+				<!-- 상품목록 -->
+				<div class="col mb-5">
+					<div class="card h-100">
+						<!-- Sale badge-->
+						<div class="badge bg-dark text-white position-absolute"
+							style="top: 0.5rem; right: 0.5rem">Sale</div>
+						<!-- Product image-->
+						<img class="card-img-top" src="resources/images/${product.prodImage }" alt="..." />
+						<!-- Product details-->
+						<div class="card-body p-4">
+							<div class="text-center">
+								<!-- Product name-->
+								<h5 class="fw-bolder"><a href="productInfo.do?bno=${product.prodCode}">${product.prodName}</a></h5>
+								<!-- Product reviews-->
+								<div
+									class="d-flex justify-content-center small text-warning mb-2">
+									<c:forEach var="star" begin="1" end="5" step="1">
+										<c:choose>
+											<c:when test="${product.likeIt >=star }">
+												 <div class="bi-star-fill"></div>
+											</c:when>
+											<c:otherwise>
+											 	<div class="bi"></div>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</div>
+								<!-- Product price-->
+								<span class="text-muted text-decoration-line-through">${product.price }원</span>
+								${product.offPrice }원
+							</div>
+						</div>
+						<!-- Product actions-->
+						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+							<div class="text-center">
+								<a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+</section>

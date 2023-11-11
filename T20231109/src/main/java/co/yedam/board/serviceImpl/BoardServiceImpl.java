@@ -14,24 +14,31 @@ import co.yedam.common.DataSourceMybatis;
 public class BoardServiceImpl implements BoardService{
 
 	
-	//SqlSessionFactory factory = DataSourceMybatis.getInstance();  //반환해주는 
 	
-	SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);  //true하면 자동 커밋하겠다는 말 
+	
+	SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);  
 	BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-	//인터페이스  mapper =  boardMapper.xml 
 	
 	
-	@Override  //전체 조회
+	
+	@Override  
 	public List<BoardVO> boardList() {    
 		
 		return mapper.selectList();
 	}
 	
 
-	@Override  //한건 조회 
+	@Override 
 	public BoardVO getBoard(String prodCode) {
 		
 		return mapper.select(prodCode);
+	}
+
+
+	@Override
+	public List<BoardVO> relatedList() {
+		
+		return mapper.relatedList();
 	}
 
 	

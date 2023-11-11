@@ -3,4 +3,3 @@
 <jsp:forward page="main.do"></jsp:forward>
 
 
-<h3>커피페이지</h3>

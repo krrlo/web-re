@@ -1,5 +1,7 @@
 package co.yedam.board.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,12 +17,15 @@ public class GetBoardControl implements Command {
 		
 		
 		String path = "board/getBoard.tiles";
-		String bno = req.getParameter("bno");
+		String bno = req.getParameter("bno"); 
 		
 		BoardService svc = new BoardServiceImpl();
-		BoardVO vo = svc.getBoard(bno);
-	
-		System.out.println(vo);
+		BoardVO vo = svc.getBoard(bno);  //해당
+		List <BoardVO> rlist = svc.relatedList();  //관련
+		
+		
+		
+		req.setAttribute("rlist", rlist); 
 		req.setAttribute("bno", vo); 
 		
 		try {
